@@ -1,6 +1,6 @@
 <template>
     <nav>
-        <h1>ALLURE.</h1>
+        <h1>{{ pageNameHeader }}.</h1>
         <div class="nav-link-center">
             <router-link to="/">Home</router-link>
             <router-link to="/products">Products</router-link>
@@ -9,14 +9,23 @@
             <router-link to="/about">About Us</router-link>
         </div>
         <span>
-            <router-link to="/cart">Cart</router-link>
+            <router-link to="/cart">Cart({{ totalCartItems }})</router-link>
         </span>
     </nav>
 </template>
 
 <script>
+import { ref } from 'vue'
+import pageData from './pageData.js'
+
 export default{
-    
+    setup(){
+        const { pageNameHeader } = pageData()   
+        const totalCartItems = ref(0)
+
+
+        return{ pageNameHeader , totalCartItems}
+    }
 }
 </script>
 
@@ -25,8 +34,6 @@ nav {
     display: flex;
     align-items: center;
     flex-direction: row;
-    padding: 30px;
-
 }
 
 .nav-link-center {
