@@ -32,7 +32,46 @@ const pageData = () => {
     img : require("@/assets/Rectangle9.png")
   })
 
-  return { pageName, pageNameHeader , alleyFaceCream , totalCartItem , philaeHairSerum , alley2xCleaner , allyBodyWash};
+  const aylaSkinSerum = ref({
+    name: "Ayla Skin Repair Serum",
+    price: 30.00.toFixed(2),
+    prevPrice: 45.00.toFixed(2),
+    img : require("@/assets/Rectangle10.png")
+  })
+
+  const allureSunscreen = ref({
+    name: "Allure SPF Sunscreen",
+    price: 30.00.toFixed(2),
+    prevPrice: 45.00.toFixed(2),
+    img : require("@/assets/Rectangle11.png")
+  })
+
+  const toniccMoisturizer = ref({
+    name: "Tonic Moisturizer",
+    price: 30.00.toFixed(2),
+    prevPrice: 45.00.toFixed(2),
+    img : require("@/assets/Rectangle12.png")
+  })
+
+  const allurePeeling = ref({
+    name: "Allure Peeling Solution",
+    price: 30.00.toFixed(2),
+    prevPrice: 45.00.toFixed(2),
+    img : require("@/assets/Rectangle13.png")
+  })
+  return { 
+    pageName,
+    pageNameHeader,
+    alleyFaceCream,
+    totalCartItem,
+    philaeHairSerum ,
+    alley2xCleaner,
+    allyBodyWash,
+    aylaSkinSerum,
+    allureSunscreen,
+    toniccMoisturizer,
+    allurePeeling
+  };
 };
 
 export default pageData;
