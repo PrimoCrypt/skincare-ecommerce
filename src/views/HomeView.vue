@@ -21,6 +21,9 @@
         <div class="homeTopPicks">
             <TopPicks/>
         </div>
+        <div class="homeNecessities">
+            <Necessities/>
+        </div>
     </div>
     <Footer />
 </template>
@@ -31,13 +34,14 @@ import AboutUs from '@/components/HomePageComps/AboutUs.vue'
 import WhyUs from '@/components/HomePageComps/WhyUs.vue'
 import PopularProd from '@/components/HomePageComps/PopularProd.vue'
 import TopPicks from '@/components/HomePageComps/TopPicks.vue'
+import Necessities from '@/components/HomePageComps/Necessities.vue'
 import Footer from '@/components/Footer.vue'
 import pageData from '@/components/pageData.js'
 import { useRouter, useRoute } from 'vue-router';
 
 export default {
     name: 'Home',
-    components: { NavBar, Footer, AboutUs, WhyUs, PopularProd, TopPicks },
+    components: { NavBar, Footer, AboutUs, WhyUs, PopularProd, TopPicks, Necessities },
     setup() {
         const { pageName } = pageData()
         const router = useRouter();
@@ -86,7 +90,7 @@ export default {
 }
 
 .homeAboutUs{
-    height: 100vh;
+    height: auto;
 }
 
 .homeWhyUs{
@@ -102,6 +106,11 @@ export default {
 
 .homeTopPicks{
     margin: 80px;
-    height: 100vh;
+    height: auto;
+}
+
+.homeNecessities{
+    margin: 80px;
+    height: auto;
 }
 </style>
