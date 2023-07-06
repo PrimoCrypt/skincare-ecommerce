@@ -12,20 +12,32 @@
         <div class="homeAboutUs">
             <AboutUs/>
         </div>
+        <div class="homeWhyUs">
+            <WhyUs/>
+        </div>
+        <div class="homePopularProd">
+            <PopularProd/>
+        </div>
+        <div class="homeTopPicks">
+            <TopPicks/>
+        </div>
     </div>
     <Footer />
 </template>
 
 <script>
-import AboutUs from '@/components/AboutUs.vue'
+import NavBar from '@/components/NavBar.vue'
+import AboutUs from '@/components/HomePageComps/AboutUs.vue'
+import WhyUs from '@/components/HomePageComps/WhyUs.vue'
+import PopularProd from '@/components/HomePageComps/PopularProd.vue'
+import TopPicks from '@/components/HomePageComps/TopPicks.vue'
 import Footer from '@/components/Footer.vue'
 import pageData from '@/components/pageData.js'
-import NavBar from '@/components/NavBar.vue'
 import { useRouter, useRoute } from 'vue-router';
 
 export default {
     name: 'Home',
-    components: { NavBar, Footer , AboutUs },
+    components: { NavBar, Footer, AboutUs, WhyUs, PopularProd, TopPicks },
     setup() {
         const { pageName } = pageData()
         const router = useRouter();
@@ -74,6 +86,22 @@ export default {
 }
 
 .homeAboutUs{
+    height: 100vh;
+}
+
+.homeWhyUs{
+    margin: 80px;
+    height: 100vh;
+}
+
+.homePopularProd{
+    min-height: 100vh;
+    color: #2F4333;
+    margin: 0 80px 80px 80px;
+}
+
+.homeTopPicks{
+    margin: 80px;
     height: 100vh;
 }
 </style>

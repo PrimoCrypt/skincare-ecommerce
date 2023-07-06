@@ -38,7 +38,7 @@ nav {
 
 .nav-link-center {
     width: 100%;
-    font-family: Arial, Helvetica, sans-serif;
+
 }
 
 /* nav h1 {
