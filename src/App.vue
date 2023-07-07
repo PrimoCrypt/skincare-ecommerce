@@ -16,6 +16,7 @@
 body {
     margin: 0;
     color: #E9E9E9;
+    background-color: #F1F5F2;;
 }
 
 .app {
