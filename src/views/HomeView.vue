@@ -10,22 +10,22 @@
             </div>
         </div>
         <div class="homeAboutUs">
-            <AboutUs/>
+            <AboutUs />
         </div>
         <div class="homeWhyUs">
-            <WhyUs/>
+            <WhyUs />
         </div>
         <div class="homePopularProd">
-            <PopularProd/>
+            <PopularProd />
         </div>
         <div class="homeTopPicks">
-            <TopPicks/>
+            <TopPicks />
         </div>
         <div class="homeNecessities">
-            <Necessities/>
+            <Necessities />
         </div>
         <div class="blogView">
-            <BlogView/>
+            <BlogView />
         </div>
     </div>
     <Footer />
@@ -61,22 +61,27 @@ export default {
 </script>
 
 <style scoped>
+/* .home{
+    
+} */
+
 .homeHeader {
+    width: 100%;
     height: 120vh;
     background: linear-gradient(rgba(0, 0, 0, 0.372), rgba(0, 0, 0, 0.194)), url('/src/assets/HomeHeaderImage.jpeg') no-repeat;
     background-size: cover;
-    padding: 0 100px;
-
+    background-position: center;
 }
 
 .homeHeaderMid {
     width: 60%;
     text-align: left;
+    margin: 0 80px;
 }
 
 .homeHeaderMid h3 {
     font-size: 4rem;
-    margin: 180px 0 40px 0;
+    margin: 15vh 0 40px 0;
 }
 
 .homeHeaderMid p {
@@ -93,32 +98,32 @@ export default {
     padding: 20px 50px;
 }
 
-.homeAboutUs{
+.homeAboutUs {
     height: auto;
 }
 
-.homeWhyUs{
+.homeWhyUs {
     margin: 80px;
-    height: 100vh;
+    height: auto;
 }
 
-.homePopularProd{
-    min-height: 100vh;
+.homePopularProd {
+    max-height: 100vh;
     color: #2F4333;
     margin: 0 80px 80px 80px;
 }
 
-.homeTopPicks{
+.homeTopPicks {
     margin: 80px;
     height: auto;
 }
 
-.homeNecessities{
+.homeNecessities {
     margin: 80px;
     height: auto;
 }
 
-.blogView{
+.blogView {
     margin: 80px;
     height: auto;
 }

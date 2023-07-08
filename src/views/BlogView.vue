@@ -73,14 +73,22 @@ main p{
 }
 
 .posts{
-    display: flex;
-    flex-direction: row;
-    margin: 30px 0;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 30px;
 }
 
 .post{
     text-align: left;
     margin: 0 20px;
+    max-width: 100%;
+}
+
+.post img{
+    max-width: 100%;
+    height: auto;
 }
 
 h4{

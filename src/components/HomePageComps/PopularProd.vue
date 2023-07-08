@@ -18,17 +18,17 @@
                 </div>
             </div>
             <div class="item3 item">
-                <img :src="philaeHairSerum.img" />
-                <div class="ProdnPrice">
-                    <h4>{{philaeHairSerum.name}}</h4>
-                    <h4>${{ philaeHairSerum.price }}</h4>
-                </div>
-            </div>
-            <div class="item4 item">
                 <img :src="allyBodyWash.img" />
                 <div class="ProdnPrice">
                     <h4>{{allyBodyWash.name}}</h4>
                     <h4>${{ allyBodyWash.price }}</h4>
+                </div>
+            </div>
+            <div class="item4 item">
+                <img :src="philaeHairSerum.img" />
+                <div class="ProdnPrice">
+                    <h4>{{philaeHairSerum.name}}</h4>
+                    <h4>${{ philaeHairSerum.price }}</h4>
                 </div>
             </div>
         </div>
@@ -64,41 +64,40 @@ export default {
 }
 
 .p_productItems{
-    position: relative;
-    flex-direction: row;
-    /* width: 80vw; */
-    /* overflow-x:scroll;
-    overflow-y: hidden;
-    white-space: nowrap; */
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Creates four equal-width columns */
+    gap: 10px;
 }
 
 .item{
-    margin: 0 10px;
+    padding: 0 10px;
+    width: 100%;
 }
-.item1 {
-    box-sizing: border-box;
-    width: 280px;
+
+.item img{
+    max-width: 100%;
+    height: auto;
+}
+/* .item1 {
+
 }
 
 .item2{
-    width: 270px;
-    margin-top: 200px;
-    margin-left: 50px;
+
 }
 
 .item3{
-    width: 270px;
-    position: absolute;
-    right: 0;
+
 }
 
 .item4{
-    width: 270px;
-    margin: 400px 50px 0 100px;
-}
+
+} */
 .ProdnPrice{
     flex-direction: row;
     justify-content: space-between;
+    text-align: left;
     color: #292929;
     font-family: Rubik;
     font-size: 18px;

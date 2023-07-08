@@ -31,20 +31,32 @@
                 </tbody>
                 <tbody v-else>
                     <tr>
-                        <td>Cell 1</td>
-                        <td>Cell 2</td>
+                        <td>
+                            <h2>SKIN HEALTH</h2>
+                            <p>Our products contain only natural variants that are essential for your skin, oil and additives contained in natural skincare have anti-inflammatory effects.</p>
+                        </td>
+                        <td></td>
                     </tr>
                     <tr>
-                        <td>Cell 3</td>
-                        <td>Cell 4</td>
+                        <td></td>
+                        <td>
+                            <h2>NATURAL INGREDIENTS</h2>
+                            <p>Our skincare products are handmade in batches. They are made using only natural oils and they contain no chemicals.</p>
+                        </td>
                     </tr>
                     <tr>
-                        <td>Cell 5</td>
-                        <td>Cell 6</td>
+                        <td>
+                            <h2>ORIGINALITY</h2>
+                            <p>Our products are unique, original and made carefully with good attention to details.</p>
+                        </td>
+                        <td></td>
                     </tr>
                     <tr>
-                        <td>Cell 7</td>
-                        <td>Cell 8</td>
+                        <td></td>
+                        <td>
+                            <h2>GENTLE CARE</h2>
+                            <p>The products do not only cleanse the skin, but also protects it from the negative effects of other unwanted environmental factors.</p>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -57,10 +69,10 @@ import { ref, onMounted, onUnmounted } from 'vue';
 
 export default {
     setup() {
-        const isSmallScreen = ref(window.innerWidth < 600);
+        const isSmallScreen = ref(window.innerWidth < 950);
 
         const handleResize = () => {
-            isSmallScreen.value = window.innerWidth < 600;
+            isSmallScreen.value = window.innerWidth < 950;
         };
 
         onMounted(() => {
@@ -91,14 +103,13 @@ h2,p{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: calc(100vh - 60px);
-    /* Subtract the height of the h1 element */
+    min-height: calc(100vh - 60px);
 }
 
 .responsive-table {
     width: 100%;
     table-layout: fixed;
-    height: 100%;
+    height: auto;
 }
 
 table {
@@ -109,10 +120,10 @@ table {
 
 td {
     border: 0.5px solid #000;
-    padding: 10px;
+    padding: 50px 10px;
 }
 
-@media (max-width: 600px) {
+/* @media (max-width: 600px) {
     tbody{
         height: 100%;
     }
@@ -138,5 +149,5 @@ td {
     table {
         border-collapse: collapse;
     }
-}
+} */
 </style>

@@ -1,12 +1,13 @@
 <template>
-    <div class="footer-image"></div>
+    <div class="footer-image">
+        <img src="../assets/FooterImage.png" alt="Footer Image">
+    </div>
 </template>
 
 
 <style>
-.footer-image{
-    background: url("../assets/FooterImage.png") no-repeat ;
-    background-size: cover;
-    height: 100vh;
+.footer-image img{
+    width: 100%;
+    height: auto;
 }
 </style>
