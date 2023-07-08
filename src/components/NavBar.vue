@@ -1,17 +1,18 @@
 <template>
-    <nav>
-        <h1>{{ pageNameHeader }}.</h1>
-        <div class="nav-link-center">
-            <router-link to="/">Home</router-link>
-            <router-link to="/products">Products</router-link>
-            <span>Sale</span>
-            <router-link to="/blog">Blog</router-link>
-            <router-link to="/about">About Us</router-link>
-        </div>
-        <span>
-            <router-link to="/cart">Cart({{ totalCartItems }})</router-link>
-        </span>
-    </nav>
+    <div class="navbar">
+            <h1>{{ pageNameHeader }}.</h1>
+            <div class="nav-link-center">
+                <router-link to="/">Home</router-link>
+                <router-link to="/products">Products</router-link>
+                <span>Sale</span>
+                <router-link to="/blog">Blog</router-link>
+                <router-link to="/about">About Us</router-link>
+            </div>
+            <span>
+                <router-link to="/cart">Cart({{ totalCartItems }})</router-link>
+            </span>
+    </div>
+    
 </template>
 
 <script>
@@ -30,16 +31,18 @@ export default{
 </script>
 
 <style>
-nav {
+.navbar {
     display: flex;
     align-items: center;
     flex-direction: row;
+    justify-content: space-between;
+    margin: 0 80px;
 }
-
+/* 
 .nav-link-center {
     width: 100%;
 
-}
+} */
 
 /* nav h1 {
     float: left;
@@ -50,13 +53,13 @@ nav {
     width: 100px;
 }
 
-nav a {
+.navbar a {
     margin: 0 20px;
     text-decoration: none;
     color: #E9E9E9;
 }
 
-nav a.router-link-exact-active {
+.navbar a.router-link-exact-active {
     font-weight: bold;
     text-decoration: underline;
 }

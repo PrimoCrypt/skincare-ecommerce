@@ -53,17 +53,25 @@ export default {
 }
 
 .container{
+    width: 100%;
     display: grid;
     text-align: left;
-    grid-template-columns: repeat(2,1fr)
+    grid-template-columns: repeat(2,1fr);
+    gap: 20px;
+
 }
 .item{
+    width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin: 20px;
     color: #292929;
     font-weight: 400;
+}
+
+.item img{
+    max-width: 50%;
+    height: auto;
 }
 .itemText{
     margin-left: 20px;
@@ -83,4 +91,6 @@ export default {
 .item img{
     width: 295px;
 }
+
+
 </style>

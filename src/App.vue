@@ -16,7 +16,8 @@
 body {
     margin: 0;
     color: #E9E9E9;
-    background-color: #F1F5F2;;
+    background-color: #F1F5F2;
+    ;
 }
 
 .app {
@@ -25,7 +26,7 @@ body {
 }
 
 #app {
-    width: 100%;
+    /* width: 100%; */
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
