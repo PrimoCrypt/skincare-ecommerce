@@ -5,7 +5,7 @@
 </template>
 
 
-<style>
+<style scoped>
 .footer-image img{
     width: 100%;
     height: auto;

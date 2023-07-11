@@ -6,7 +6,7 @@
                 <img :src="alleyFaceCream.img" />
                 <div class="ProdnPrice">
                     <h4>{{alleyFaceCream.name}}</h4>
-                    <h4>${{ alleyFaceCream.price }}</h4>
+                    <h4 class="prod-price">${{ alleyFaceCream.price }}</h4>
                 </div>
             </div>
             
@@ -14,21 +14,21 @@
                 <img :src="alley2xCleaner.img" />
                 <div class="ProdnPrice">
                     <h4>{{alley2xCleaner.name}}</h4>
-                    <h4>${{ alley2xCleaner.price }}</h4>
+                    <h4 class="prod-price">${{ alley2xCleaner.price }}</h4>
                 </div>
             </div>
             <div class="item3 item">
                 <img :src="allyBodyWash.img" />
                 <div class="ProdnPrice">
                     <h4>{{allyBodyWash.name}}</h4>
-                    <h4>${{ allyBodyWash.price }}</h4>
+                    <h4 class="prod-price">${{ allyBodyWash.price }}</h4>
                 </div>
             </div>
             <div class="item4 item">
                 <img :src="philaeHairSerum.img" />
                 <div class="ProdnPrice">
                     <h4>{{philaeHairSerum.name}}</h4>
-                    <h4>${{ philaeHairSerum.price }}</h4>
+                    <h4 class="prod-price">${{ philaeHairSerum.price }}</h4>
                 </div>
             </div>
         </div>
@@ -64,7 +64,7 @@ export default {
 }
 
 .p_productItems{
-    max-width: 100%;
+    width: 100%;
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* Creates four equal-width columns */
     gap: 10px;
@@ -72,7 +72,7 @@ export default {
 
 .item{
     padding: 0 10px;
-    width: 100%;
+    max-width: 100%;
 }
 
 .item img{
@@ -103,5 +103,42 @@ export default {
     font-size: 18px;
     font-style: normal;
     font-weight: 600
+}
+
+ @media (max-width: 880px) {
+    .p_productItems{
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+    }
+    .item{
+        margin: 15px;
+    }
+    .ProdnPrice{
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 450px){
+    .p_productItems{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        overflow-x:scroll;
+        overflow-y: hidden;
+        white-space: nowrap;
+    }  
+    .item{
+        display: flex;
+        justify-content: center;
+        width: auto;
+        margin: 0;
+    }
+    .item img{
+        width: 40vh;
+        height: 50vh;
+    }
+    .prod-price{
+        margin-left: 20px;
+    }
 }
 </style>

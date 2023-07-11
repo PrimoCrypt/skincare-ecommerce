@@ -13,10 +13,9 @@
                     <h1>EARTH IS OUR TRUE SOURCE OF BEAUTY</h1>
                     <p>Allure is a cosmetic brand of face oils,body care and wellness products for all skin types. </p>
                 </div>
-                
             </div>
             <div class="r-section">
-                <img src="../../assets/homeAboutUsImage.png" class="homeAboutUsImage" />
+                <img src="../../assets/homeAboutUsImage.png" class="homeAboutUsImage"/>
             </div>
         </div>
     </div>
@@ -110,10 +109,64 @@ export default{
 
 
 .r-section{
-    margin: 0 80px 0 auto;
+    margin: 40px 80px 0 auto;
 }
 
 .homeAboutUsImage{
     width: 25vw;
+}
+
+@media (max-width:450px){
+    .heading-container{
+        width: 100%;
+        margin: 0 0 0 20px;
+    }
+    .heading-p{
+        text-align: center;
+    }
+    .flex-container{
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+        padding: 0;
+    }
+    .l-section{
+        width: 100%;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .top-l-section{
+        padding: 0;
+        display: flex;
+        justify-content: center;
+    }
+    .top-l-section button{
+        font-size: 15px;
+        padding: auto 10px;
+    }
+    .bottom-l-section{
+        width: 100%;
+    }
+    .bottom-l-section h1{
+        font-size: 25px;
+        line-height: 40px;
+        width: 100%;
+        text-align: center;
+    }
+    .bottom-l-section p{
+        width: 80%;
+    }
+    .r-section{
+        width: 100%;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        /* height: 500px; */
+    }
+    .homeAboutUsImage{
+        width: 80%;
+    }
 }
 </style>
