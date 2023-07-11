@@ -1,14 +1,13 @@
 <template>
     <div class="container">
         <h1>Allure's Blog</h1>
-        <p>A close look at the skin care life and routine of celebrities, customers’ reviews about products,and inside scoop
-            from our aesthetic experts.</p>
+        <p class="container-p">A close look at the skin care life and routine of celebrities, customers’ reviews about products,and inside scoop from our aesthetic experts.</p>
         <div class="posts">
             <div class="post">
                 <img src="@/assets/Rectangle18.png">
                 <div class="post-content">
                     <h2>The Absolute Best Skin Product for Men at Allure</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non, volutpat nunc, amet laoreet odio dolor nec.
+                    <p id="post-p">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non, volutpat nunc, amet laoreet odio dolor nec.
                         Penatibus nisi amet dolor mattis</p>
                     <h4 class="read_more">Read more
                         <span class="div">
@@ -25,7 +24,7 @@
                 <img src="@/assets/Rectangle19.png">
                 <div class="post-content">
                     <h2>The Absolute Best Skin Product for Men at Allure</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non, volutpat nunc, amet laoreet odio dolor nec.
+                    <p id="post-p">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non, volutpat nunc, amet laoreet odio dolor nec.
                         Penatibus nisi amet dolor mattis</p>
                     <h4 class="read_more">Read more
                         <span class="div">
@@ -42,7 +41,7 @@
                 <img src="@/assets/Rectangle20.png">
                 <div class="post-content">
                     <h2>The Absolute Best Skin Product for Men at Allure</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non, volutpat nunc, amet laoreet odio dolor nec.
+                    <p id="post-p">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non, volutpat nunc, amet laoreet odio dolor nec.
                         Penatibus nisi amet dolor mattis</p>
                     <h4 class="read_more">Read more
                         <span class="div">
@@ -76,6 +75,10 @@ export default {
 
 
 <style scoped>
+*{
+    display: flex;
+    flex-direction: column;
+}
 .container {
     color: #292929;
     font-family: Cardo;
@@ -85,7 +88,7 @@ export default {
     width: 100%;
 }
 
-.container p {
+.container-p {
     color: #292929;
     text-align: center;
     font-family: Rubik;
@@ -93,18 +96,45 @@ export default {
     font-weight: 400;
     font-size: 18px;
     padding: 0 15vw;
-    margin: 40px 0 0 0;
+    margin: 0;
 }
-
-
+.posts{
+    margin: 30px 0;
+    position: relative;
+    flex-direction: row;
+    overflow-x:scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+.post{
+    display: flex;
+    justify-content: center;
+    max-width: 70%;
+    margin: 0 20px;
+}
+.post h2{
+    white-space: initial;
+    text-align: left;
+    margin: 0;
+}
+.post p{
+    margin: 5px 0;
+    color: #292929;
+    text-align: left;
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    white-space: initial;
+}
+.read_more{
+    display: flex;
+    flex-direction: row;
+    justify-self: start;
+    align-items: center;
+}
 @media (max-width:450px) {
-    .posts{
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        overflow-x:scroll;
-        overflow-y: hidden;
-    }
+    
     .post {
         display: flex;
         flex-direction: column;
@@ -112,19 +142,10 @@ export default {
         width: 400px;
         margin-bottom: 20px;
     }
-
     .post img {
-        width: 100%;
-        max-width: 400px; /* Adjust the maximum width of the image as needed */
+        max-width: 220px;
+        width: 220px;
     }
-    /* .post h2{
-        max-width: 100%;
-    }
-
-    .post p{
-        max-width: 100%;
-    } */
-
     .post-content {
         width: 100%;
         max-width: 400px; /* Adjust the maximum width of the content as needed */
@@ -132,11 +153,17 @@ export default {
         margin-top: 10px;
     }
 
-    .post-content h2,
+    .post-content h2{
+        width: 100%;
+        font-size: 18px;
+    }
     .post-content p {
         width: 100%;
         box-sizing: border-box;
-        padding: 0 20px;
+        font-size: 13px;
+    }
+    .read_more{
+        margin: 0;
     }
 }
 </style>
