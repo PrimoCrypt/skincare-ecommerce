@@ -29,6 +29,32 @@
                         </td>
                     </tr>
                 </tbody>
+                <tbody v-else-if="isMobileScreen">
+                    <tr>
+                        <td>
+                            <h2>SKIN HEALTH</h2>
+                            <p>Our products contain only natural variants that are essential for your skin, oil and additives contained in natural skincare have anti-inflammatory effects.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h2>NATURAL INGREDIENTS</h2>
+                            <p>Our skincare products are handmade in batches. They are made using only natural oils and they contain no chemicals.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h2>ORIGINALITY</h2>
+                            <p>Our products are unique, original and made carefully with good attention to details.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h2>GENTLE CARE</h2>
+                            <p>The products do not only cleanse the skin, but also protects it from the negative effects of other unwanted environmental factors.</p>
+                        </td>
+                    </tr>
+                </tbody>
                 <tbody v-else>
                     <tr>
                         <td>
@@ -82,8 +108,21 @@ export default {
         onUnmounted(() => {
             window.removeEventListener('resize', handleResize);
         });
+        const isMobileScreen = ref(window.innerWidth <= 450);
 
-        return { isSmallScreen };
+        const handleMobileResize = () => {
+            isMobileScreen.value = window.innerWidth <= 450;
+        };
+
+        onMounted(() => {
+            window.addEventListener('resize', handleMobileResize);
+        });
+
+        onUnmounted(() => {
+            window.removeEventListener('resize', handleMobileResize);
+        });
+
+        return { isSmallScreen, isMobileScreen };
     },
 };
 </script>

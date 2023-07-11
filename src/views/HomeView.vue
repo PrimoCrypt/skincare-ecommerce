@@ -99,32 +99,57 @@ export default {
 }
 
 .homeAboutUs {
+    margin: 0 80px;
     height: auto;
 }
 
 .homeWhyUs {
-    margin: 80px;
+    margin: 0 80px;
     height: auto;
 }
 
 .homePopularProd {
-    max-height: 100vh;
+    height: auto;
     color: #2F4333;
-    margin: 0 80px 80px 80px;
+    margin: 0 80px;
 }
 
 .homeTopPicks {
-    margin: 80px;
+    margin: 0 80px;
     height: auto;
 }
 
 .homeNecessities {
-    margin: 80px;
+    margin: 0 80px;
     height: auto;
 }
 
 .blogView {
-    margin: 80px;
+    margin: 0 80px;
     height: auto;
+}
+
+@media (max-width: 700px) {
+    .homeHeaderMid{
+        margin: 0 20px;
+    }
+    .homeAboutUs{
+        margin: 0 20px;
+    }
+    .homeWhyUs{
+        margin: 0 20px;
+    }
+    .homePopularProd{
+        margin: 0 20px 20px 20px;
+    }
+    .homeTopPicks{
+        margin: 0 20px;
+    }
+    .homeNecessities{
+        margin: 0 20px;
+    }
+    .blogView{
+        margin: 0 20px;
+    }
 }
 </style>
