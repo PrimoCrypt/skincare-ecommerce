@@ -8,69 +8,70 @@ const pageData = () => {
   });
   const totalCartItem = ref(0)
 
-  const alleyFaceCream = ref({
+  const popularProdData = ref([{
+    value: 'alleyFaceCream',
     name: "ALLURE FACE CREAM",
     price: 45.00.toFixed(2),
     img: require("@/assets/Rectangle6.png")
-  })
-
-  const  philaeHairSerum = ref({
+  },
+  {
+    value: 'philaeHairSerum',
     name:"PHILAE HAIR SERUM",
     price: 45.00.toFixed(2),
     img: require("@/assets/Rectangle7.png")
-  })
-
-  const alley2xCleaner = ref({
+  },
+  {
+    value: 'alley2xCleaner',
     name: "ALLEY 2X CLEANSER",
     price: 45.00.toFixed(2),
     img : require("@/assets/Rectangle8.png")
-  })
-
-  const allyBodyWash = ref({
+  },
+  {
+    value: 'allyBodyWash',
     name: "ALLY BODY WASH",
     price: 45.00.toFixed(2),
     img : require("@/assets/Rectangle9.png")
-  })
+  }])
 
-  const aylaSkinSerum = ref({
+
+
+  const topPicksData = ref([
+  {
+    value: 'aylaSkinSerum',
     name: "Ayla Skin Repair Serum",
     price: 30.00.toFixed(2),
     prevPrice: 45.00.toFixed(2),
     img : require("@/assets/Rectangle10.png")
-  })
-
-  const allureSunscreen = ref({
+  },
+  {
+    value: 'allureSpfSunscreen',
     name: "Allure SPF Sunscreen",
     price: 30.00.toFixed(2),
     prevPrice: 45.00.toFixed(2),
     img : require("@/assets/Rectangle11.png")
-  })
-
-  const toniccMoisturizer = ref({
+  },
+  {
+    value: 'toniccMoisturizer',
     name: "Tonic Moisturizer",
     price: 30.00.toFixed(2),
     prevPrice: 45.00.toFixed(2),
     img : require("@/assets/Rectangle12.png")
-  })
-
-  const allurePeeling = ref({
+  },
+  {
+    value:'allurePeeling',
     name: "Allure Peeling Solution",
     price: 30.00.toFixed(2),
     prevPrice: 45.00.toFixed(2),
     img : require("@/assets/Rectangle13.png")
-  })
+  }])
+
+
   return { 
     pageName,
     pageNameHeader,
-    alleyFaceCream,
     totalCartItem,
-    philaeHairSerum ,
-    alley2xCleaner,
-    allyBodyWash,
-    aylaSkinSerum,
-    allureSunscreen,
-    toniccMoisturizer,
-    allurePeeling
+    popularProdData,
+    topPicksData
   };
 };
 

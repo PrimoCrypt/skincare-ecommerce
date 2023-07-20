@@ -160,10 +160,14 @@ export default{
         flex-direction: column;
         align-items: center;
     }
-    .nav-links a {
+    .nav-links a, .nav-links span {
         margin: 10px 0;
         text-decoration: none;
+        text-align: left;
+        width: 100%;
         color: #000;
+        padding-left: 10px;
+
     }
     /* Hide the navigation links by default */
     .nav-links {
@@ -174,7 +178,10 @@ export default{
         display: flex;
         flex-direction: column;
         background-color: white;
+        width: 100px;
+        position: relative;
     }
+    
 }
 
 

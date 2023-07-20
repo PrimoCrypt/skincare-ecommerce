@@ -1,59 +1,14 @@
 <template>
     <div>
         <h1 class="h1">Top Picks</h1>
-        <div class="topPicksItems">
-            <div class="item1 item">
-                <img :src="aylaSkinSerum.img" />
+        <div class="topPicksItems" >
+            <div class="item" v-for="item in topPicksData" :key="item.value">
+                <img :src="item.img" />
                 <div class="ProdnPrice">
-                    <h4>{{aylaSkinSerum.name}}</h4>
+                    <h4>{{item.name}}</h4>
                     <div class="prices">
-                        <h4>${{ aylaSkinSerum.price }}</h4>
-                        <h4 class="prevPrice">${{ aylaSkinSerum.prevPrice }}</h4>
-                    </div>
-                </div>
-                <h4 class="addToCart">Add to cart 
-                    <span class="div">
-                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill="none" d="M0 0h24v24H0z"></path><path d="M15 5l-1.41 1.41L18.17 11H2v2h16.17l-4.59 4.59L15 19l7-7-7-7z"></path></svg>
-                    </span>
-                </h4>
-            </div>
-            <div class="item2 item">
-                <img :src="allureSunscreen.img" />
-                <div class="ProdnPrice">
-                    <h4>{{allureSunscreen.name}}</h4>
-                    <div class="prices">
-                        <h4>${{ allureSunscreen.price }}</h4>
-                        <h4 class="prevPrice">${{ allureSunscreen.prevPrice }}</h4>
-                    </div>
-                </div>
-                <h4 class="addToCart">Add to cart 
-                    <span class="div">
-                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill="none" d="M0 0h24v24H0z"></path><path d="M15 5l-1.41 1.41L18.17 11H2v2h16.17l-4.59 4.59L15 19l7-7-7-7z"></path></svg>
-                    </span>
-                </h4>
-            </div>
-            <div class="item3 item">
-                <img :src="toniccMoisturizer.img" />
-                <div class="ProdnPrice">
-                    <h4>{{toniccMoisturizer.name}}</h4>
-                    <div class="prices">
-                        <h4>${{ toniccMoisturizer.price }}</h4>
-                        <h4 class="prevPrice">${{ toniccMoisturizer.prevPrice }}</h4>
-                    </div>
-                </div>
-                <h4 class="addToCart">Add to cart 
-                    <span class="div">
-                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill="none" d="M0 0h24v24H0z"></path><path d="M15 5l-1.41 1.41L18.17 11H2v2h16.17l-4.59 4.59L15 19l7-7-7-7z"></path></svg>
-                    </span>
-                </h4>
-            </div>
-            <div class="item4 item">
-                <img :src="allurePeeling.img" />
-                <div class="ProdnPrice">
-                    <h4>{{allurePeeling.name}}</h4>
-                    <div class="prices">
-                        <h4>${{ allurePeeling.price }}</h4>
-                        <h4 class="prevPrice">${{ allurePeeling.prevPrice }}</h4>
+                        <h4>${{ item.price }}</h4>
+                        <h4 class="prevPrice">${{ item.prevPrice }}</h4>
                     </div>
                 </div>
                 <h4 class="addToCart">Add to cart 
@@ -69,15 +24,23 @@
 
 <script>
 import pageData from '../pageData.js'
+import {onMounted} from 'vue'
 
 
 export default {
     setup(){
-        const { aylaSkinSerum,allureSunscreen,toniccMoisturizer,allurePeeling } = pageData()
+        const { topPicksData } = pageData()
+        async function fetchData() {
+        // Code to fetch data from another component or API
+        // Since you're using a separate file, you may skip the fetching logic here
+        // Assigning `topPicksData` directly to `myData` is sufficient
+        }
+
+        onMounted(fetchData)
 
         // console.log({alleyFaceCream})
 
-        return{  aylaSkinSerum,allureSunscreen,toniccMoisturizer,allurePeeling}
+        return{  topPicksData }
     }
 }
 </script>
