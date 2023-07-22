@@ -80,12 +80,8 @@ export default{
     align-items: center;
     flex-direction: row;
     justify-content: space-between;
-    /* margin: 0 80px; */
 }
 
-.navbar h1{
-    margin-left: 80px;
-}
 
 .nav-link-center {
     width: 100%;
@@ -133,9 +129,6 @@ export default{
 
 
 @media (max-width: 700px) {
-    .navbar h1{
-        margin-left: 20px;
-    }
     /* .whole-harmburger-menu{
         align-self:baseline;
     } */

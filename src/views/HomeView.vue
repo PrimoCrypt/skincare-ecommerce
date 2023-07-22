@@ -1,7 +1,9 @@
 <template>
     <div class="home">
         <div class="homeHeader">
-            <NavBar />
+            <div class="navigationBar">
+                <NavBar />
+            </div>
             <div class="homeHeaderMid">
                 <h3>{{ pageName }} : Skin for days</h3>
                 <p>Skin care us a science, {{ pageName }} makes it art. Reduce finelines and wrinkles with alpha hydroxy
@@ -73,10 +75,15 @@ export default {
     background-position: center;
 }
 
+.navigationBar{
+    margin: 0 80px;
+}
+
 .homeHeaderMid {
     width: 60%;
     text-align: left;
     margin: 0 80px;
+
 }
 
 .homeHeaderMid h3 {
@@ -130,6 +137,9 @@ export default {
 }
 
 @media (max-width: 700px) {
+    .navigationBar{
+        margin: 0 20px;
+    }      
     .homeHeaderMid{
         margin: 0 20px;
     }
