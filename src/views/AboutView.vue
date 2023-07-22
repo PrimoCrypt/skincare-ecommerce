@@ -152,17 +152,21 @@
                 </p>
             </div>
         </div>
+        <div class="Footer">
+            <Footer/>
+        </div>
     </div>
 </template>
 
 <script>
 import NavBar from "@/components/NavBar.vue";
+import Footer from "@/components/Footer.vue"
 import { ref, onMounted, onUnmounted } from 'vue';
 
 
 export default {
     name: "About",
-    components: { NavBar },
+    components: { NavBar , Footer},
     setup(){
         const isMobileScreen = ref(window.innerWidth <= 950);
 
