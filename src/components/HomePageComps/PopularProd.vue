@@ -2,51 +2,33 @@
     <div>
         <h1 class="h1">Popular Products</h1>
         <div class="p_productItems">
-            <div class="item1 item">
-                <img :src="alleyFaceCream.img" />
+            <div class="item"  v-for="item in popularProdData" :key="item.value">
+                <img :src="item.img" />
                 <div class="ProdnPrice">
-                    <h4>{{alleyFaceCream.name}}</h4>
-                    <h4 class="prod-price">${{ alleyFaceCream.price }}</h4>
-                </div>
-            </div>
-            
-            <div class="item2 item">
-                <img :src="alley2xCleaner.img" />
-                <div class="ProdnPrice">
-                    <h4>{{alley2xCleaner.name}}</h4>
-                    <h4 class="prod-price">${{ alley2xCleaner.price }}</h4>
-                </div>
-            </div>
-            <div class="item3 item">
-                <img :src="allyBodyWash.img" />
-                <div class="ProdnPrice">
-                    <h4>{{allyBodyWash.name}}</h4>
-                    <h4 class="prod-price">${{ allyBodyWash.price }}</h4>
-                </div>
-            </div>
-            <div class="item4 item">
-                <img :src="philaeHairSerum.img" />
-                <div class="ProdnPrice">
-                    <h4>{{philaeHairSerum.name}}</h4>
-                    <h4 class="prod-price">${{ philaeHairSerum.price }}</h4>
+                    <h4>{{item.name}}</h4>
+                    <h4 class="prod-price">${{ item.price }}</h4>
                 </div>
             </div>
         </div>
-        
     </div>
 </template>
 
 <script>
 import pageData from '../pageData.js'
-
+import { onMounted } from 'vue'
 
 export default {
     setup(){
-        const { alleyFaceCream, philaeHairSerum ,  alley2xCleaner , allyBodyWash } = pageData()
+        const { popularProdData } = pageData()
+        async function fetchData() {
+        // Code to fetch data from another component or API
+        // Since you're using a separate file, you may skip the fetching logic here
+        // Assigning `topPicksData` directly to `myData` is sufficient
+        }
 
-        // console.log({alleyFaceCream})
+        onMounted(fetchData)
 
-        return{ alleyFaceCream, philaeHairSerum ,  alley2xCleaner , allyBodyWash}
+        return{ popularProdData }
     }
 }
 </script>

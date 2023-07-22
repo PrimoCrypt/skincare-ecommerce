@@ -80,12 +80,8 @@ export default{
     align-items: center;
     flex-direction: row;
     justify-content: space-between;
-    /* margin: 0 80px; */
 }
 
-.navbar h1{
-    margin-left: 80px;
-}
 
 .nav-link-center {
     width: 100%;
@@ -133,9 +129,6 @@ export default{
 
 
 @media (max-width: 700px) {
-    .navbar h1{
-        margin-left: 20px;
-    }
     /* .whole-harmburger-menu{
         align-self:baseline;
     } */
@@ -160,10 +153,14 @@ export default{
         flex-direction: column;
         align-items: center;
     }
-    .nav-links a {
+    .nav-links a, .nav-links span {
         margin: 10px 0;
         text-decoration: none;
+        text-align: left;
+        width: 100%;
         color: #000;
+        padding-left: 10px;
+
     }
     /* Hide the navigation links by default */
     .nav-links {
@@ -174,7 +171,10 @@ export default{
         display: flex;
         flex-direction: column;
         background-color: white;
+        width: 100px;
+        position: relative;
     }
+    
 }
 
 
