@@ -6,7 +6,7 @@
         <div class="flex-container">
             <div class="l-section">
                 <div class="top-l-section">
-                    <button>LEARN MORE</button>
+                    <button @click="navigateToAboutView">LEARN MORE</button>
                 </div>
                 <div class="bottom-l-section">
                     <h3>ABOUT US</h3>
@@ -21,10 +21,15 @@
     </div>
   </template>
 
-<script>
-export default{
+<script setup>
+import { useRouter, useRoute } from 'vue-router';
 
+
+const router = useRouter();
+const navigateToAboutView = () => {
+    router.push('/about')
 }
+
 </script>
 
 

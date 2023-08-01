@@ -10,14 +10,14 @@
                 <router-link to="/about">About Us</router-link>
             </div>
             <span>
-                <router-link to="/cart">Cart({{ totalCartItems }})</router-link>
+                <router-link to="/cart">Cart({{ totalCartItems.length }})</router-link>
             </span>
         </div>
         
         <div v-else class="navbar content">
             <h1>{{ pageNameHeader }}.</h1>
             <span>
-                <router-link to="/cart">Cart({{ totalCartItems }})</router-link>
+                <router-link to="/cart">Cart({{ totalCartItems.length }})</router-link>
             </span>
             <div class="whole-harmburger-menu">
                 <button class="hamburger-menu" @click="toggleMenu" :class="{ 'active': isMenuOpen }">
@@ -39,39 +39,32 @@
     
 </template>
 
-<script>
+<script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
-import pageData from './pageData.js'
-
-export default{
-    setup(){
-        const { pageNameHeader } = pageData()   
-        const totalCartItems = ref(0)
-        const isMenuOpen = ref(false)
-
-        const toggleMenu = () => {
-            isMenuOpen.value = !isMenuOpen.value
-        }
-
-        const isSmallScreen = ref(window.innerWidth < 700);
-
-        const handleResize = () => {
-            isSmallScreen.value = window.innerWidth < 700;
-        };
-
-        onMounted(() => {
-            window.addEventListener('resize', handleResize);
-        });
-
-        onUnmounted(() => {
-            window.removeEventListener('resize', handleResize);
-        });
+import { pageNameHeader, totalCartItems } from '@/pageData.js';
 
 
+    const isMenuOpen = ref(false)
 
-        return{ pageNameHeader, totalCartItems, isMenuOpen, toggleMenu, isSmallScreen}
+    const toggleMenu = () => {
+        isMenuOpen.value = !isMenuOpen.value
     }
-}
+
+    const isSmallScreen = ref(window.innerWidth < 700);
+
+    const handleResize = () => {
+        isSmallScreen.value = window.innerWidth < 700;
+    };
+
+    onMounted(() => {
+        window.addEventListener('resize', handleResize);
+    });
+
+    onUnmounted(() => {
+        window.removeEventListener('resize', handleResize);
+    });
+
+
 </script>
 
 <style scoped>

@@ -13,24 +13,20 @@
     </div>
 </template>
 
-<script>
-import pageData from '../pageData.js'
+<script setup>
+import { popularProdData } from '../../pageData.js'
 import { onMounted } from 'vue'
 
-export default {
-    setup(){
-        const { popularProdData } = pageData()
-        async function fetchData() {
-        // Code to fetch data from another component or API
-        // Since you're using a separate file, you may skip the fetching logic here
-        // Assigning `topPicksData` directly to `myData` is sufficient
-        }
 
-        onMounted(fetchData)
-
-        return{ popularProdData }
+    // const { popularProdData } = pageData
+    async function fetchData() {
+    // Code to fetch data from another component or API
+    // Since you're using a separate file, you may skip the fetching logic here
+    // Assigning `topPicksData` directly to `myData` is sufficient
     }
-}
+
+    onMounted(fetchData)
+
 </script>
 
 <style scoped>
@@ -123,4 +119,4 @@ export default {
         margin-left: 20px;
     }
 }
-</style>
+</style>../../pageData.js
