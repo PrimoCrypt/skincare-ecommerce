@@ -86,6 +86,7 @@ export default {
     font-style: normal;
     font-weight: 700;
     width: 100%;
+    margin: 0;
 }
 
 .container-p {

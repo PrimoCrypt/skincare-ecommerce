@@ -22,7 +22,7 @@
                             <h2>ORIGINALITY</h2>
                             <p>Our products are unique, original and made carefully with good attention to details.</p>
                         </td>
-                        <td>Cell 7</td>
+                        <td></td>
                         <td>
                             <h2>GENTLE CARE</h2>
                             <p>The products do not only cleanse the skin, but also protects it from the negative effects of other unwanted environmental factors.</p>
@@ -90,11 +90,10 @@
     </div>
 </template>
 
-<script>
+<script setup>
 import { ref, onMounted, onUnmounted } from 'vue';
 
-export default {
-    setup() {
+
         const isSmallScreen = ref(window.innerWidth < 950);
 
         const handleResize = () => {
@@ -122,9 +121,6 @@ export default {
             window.removeEventListener('resize', handleMobileResize);
         });
 
-        return { isSmallScreen, isMobileScreen };
-    },
-};
 </script>
 
 <style scoped>

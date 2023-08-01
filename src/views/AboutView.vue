@@ -158,33 +158,26 @@
     </div>
 </template>
 
-<script>
+<script setup>
 import NavBar from "@/components/NavBar.vue";
 import Footer from "@/components/Footer.vue"
 import { ref, onMounted, onUnmounted } from 'vue';
 
 
-export default {
-    name: "About",
-    components: { NavBar , Footer},
-    setup(){
-        const isMobileScreen = ref(window.innerWidth <= 950);
+    const isMobileScreen = ref(window.innerWidth <= 950);
 
-        const handleMobileResize = () => {
-            isMobileScreen.value = window.innerWidth <= 950;
-        };
+    const handleMobileResize = () => {
+        isMobileScreen.value = window.innerWidth <= 950;
+    };
 
-        onMounted(() => {
-            window.addEventListener('resize', handleMobileResize);
-        });
+    onMounted(() => {
+        window.addEventListener('resize', handleMobileResize);
+    });
 
-        onUnmounted(() => {
-            window.removeEventListener('resize', handleMobileResize);
-        });
+    onUnmounted(() => {
+        window.removeEventListener('resize', handleMobileResize);
+    });
 
-        return { isMobileScreen };
-    }
-};
 </script>
 
 <style scoped>
@@ -213,6 +206,8 @@ export default {
 .content{
     margin: 0 80px;
     max-width: 100%; 
+    display: flex;
+    flex-direction: column;
 }
 .right{
     padding: 80px 0 80px 80px;

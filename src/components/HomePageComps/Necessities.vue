@@ -42,14 +42,8 @@
     </div>
 </template>
 
-<script>
-export default {
-    setup() {
+<script setup>
 
-
-        return {}
-    }
-}
 </script>
 
 <style scoped>
@@ -66,6 +60,7 @@ export default {
     text-align: left;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
+    margin: 0;
 }
 
 .item {

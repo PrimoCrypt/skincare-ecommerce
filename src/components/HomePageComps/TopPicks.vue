@@ -22,27 +22,21 @@
     </div>
 </template>
 
-<script>
-import pageData from '../pageData.js'
-import {onMounted} from 'vue'
+<script setup>
+import { topPicksData } from '@/pageData.js'
+import { onMounted } from 'vue'
 
 
-export default {
-    setup(){
-        const { topPicksData } = pageData()
-        async function fetchData() {
-        // Code to fetch data from another component or API
-        // Since you're using a separate file, you may skip the fetching logic here
-        // Assigning `topPicksData` directly to `myData` is sufficient
-        }
-
-        onMounted(fetchData)
-
-        // console.log({alleyFaceCream})
-
-        return{  topPicksData }
-    }
+async function fetchData() {
+// Code to fetch data from another component or API
+// Since you're using a separate file, you may skip the fetching logic here
+// Assigning `topPicksData` directly to `myData` is sufficient
 }
+
+onMounted(fetchData)
+
+    // console.log({alleyFaceCream})
+
 </script>
 
 <style scoped>
@@ -140,4 +134,4 @@ h4{
     align-items: center;
     margin-bottom: 20px;
 }
-</style>
+</style>../../pageData.js

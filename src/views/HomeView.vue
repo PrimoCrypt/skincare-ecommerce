@@ -26,14 +26,14 @@
         <div class="homeNecessities">
             <Necessities />
         </div>
-        <div class="blogView">
+        <div class="blogView" :ref="BlogView">
             <BlogView />
         </div>
     </div>
     <Footer />
 </template>
 
-<script>
+<script setup>
 import NavBar from '@/components/NavBar.vue'
 import AboutUs from '@/components/HomePageComps/AboutUs.vue'
 import WhyUs from '@/components/HomePageComps/WhyUs.vue'
@@ -42,23 +42,15 @@ import TopPicks from '@/components/HomePageComps/TopPicks.vue'
 import Necessities from '@/components/HomePageComps/Necessities.vue'
 import BlogView from '@/views/BlogView.vue'
 import Footer from '@/components/Footer.vue'
-import pageData from '@/components/pageData.js'
+import { pageName } from '@/pageData.js'
 import { useRouter, useRoute } from 'vue-router';
 
-export default {
-    name: 'Home',
-    components: { NavBar, Footer, AboutUs, WhyUs, PopularProd, TopPicks, Necessities, BlogView },
-    setup() {
-        const { pageName } = pageData()
-        const router = useRouter();
-        const route = useRoute();
-        const navigateToProductView = () => {
-            router.push('/products')
-        }
 
-
-        return { pageName, navigateToProductView }
-    }
+// const { pageName } = pageData
+const router = useRouter();
+const route = useRoute();
+const navigateToProductView = () => {
+    router.push('/products')
 }
 </script>
 
