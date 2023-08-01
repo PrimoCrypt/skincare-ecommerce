@@ -26,7 +26,7 @@
         <div class="homeNecessities">
             <Necessities />
         </div>
-        <div class="blogView" :ref="BlogView">
+        <div class="blogView">
             <BlogView />
         </div>
     </div>
