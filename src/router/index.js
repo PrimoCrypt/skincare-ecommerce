@@ -4,6 +4,9 @@ import ProductsView from '@/views/ProductsView.vue'
 import BlogView from '@/views/BlogView.vue'
 import AboutView from '@/views/AboutView.vue'
 import CartView from '@/views/CartView.vue'
+import NotFound from '@/views/NotFound.vue'
+import ItemDetails from '@/components/ItemDetails.vue'
+import { defineProps } from 'vue'
 
 
 const routes = [
@@ -31,6 +34,18 @@ const routes = [
     path: '/cart',
     name: 'cart',
     component: CartView
+  },
+  {
+    path: '/products/:value',
+    name: 'ItemDetails',
+    component: ItemDetails,
+    props: true
+  },
+  // Catchall 404
+  {
+    path: '/:catchAll(.*)',
+    name: 'NotFound',
+    component: NotFound
   }
 ]
 

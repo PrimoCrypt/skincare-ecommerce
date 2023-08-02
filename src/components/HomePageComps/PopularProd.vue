@@ -3,11 +3,14 @@
         <h1 class="h1">Popular Products</h1>
         <div class="p_productItems">
             <div class="item"  v-for="item in popularProdData" :key="item.value">
-                <img :src="item.img" />
-                <div class="ProdnPrice">
-                    <h4>{{item.name}}</h4>
-                    <h4 class="prod-price">${{ item.price }}</h4>
-                </div>
+                <router-link :to="{name: 'ItemDetails', params:{value: item.value, image: item.img, name: item.name, price: item.price}}">
+                    <img :src="item.img" />
+                    <div class="ProdnPrice">
+                        <h4>{{item.name}}</h4>
+                        <h4 class="prod-price">${{ item.price }}</h4>
+                    </div>
+                </router-link>
+                
             </div>
         </div>
     </div>
