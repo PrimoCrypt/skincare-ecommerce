@@ -32,14 +32,14 @@ for(let i= 0; i < productsData.value.length; i++ ){
     }
 }  
 for(let i= 0; i < topPicksData.value.length; i++ ){  
-    for(let j = 0; j < cartArray.length; j++){
+    for(let j = 0; j < cartArray.value.length; j++){
         if(cartArray.value[j].item == topPicksData.value[i].value){
             cartArray.value[j] = { ...cartArray.value[j], ...topPicksData.value[i] }
         }
     }
 }
 for(let i= 0; i < popularProdData.value.length; i++ ){
-    for(let j = 0; j < cartArray.length; j++){
+    for(let j = 0; j < cartArray.value.length; j++){
         if(cartArray.value[j].item == popularProdData.value[i].value){
             cartArray.value[j] = { ...cartArray.value[j], ...popularProdData.value[i] }
         }
