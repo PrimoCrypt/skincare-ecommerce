@@ -89,13 +89,13 @@ onMounted(() => {
 
 
 const displayConsole = ()=>{
-    console.log(cartItemValue.value)
-    console.log(item.value)
-    console.log(totalCartItems.value)
-    console.log(itemValueInCart)
-    nextTick(() => {
-    console.log('After DOM update:', cartItemValue.value);
-});
+    console.log('The console is working')
+//     console.log(cartItemValue.value)
+//     console.log(item.value)
+//     console.log(totalCartItems.value)
+//     nextTick(() => {
+//     console.log('After DOM update:', cartItemValue.value);
+// });
 };
 
 watch([totalCartItems.value], ([newTotalCartItems]) => {

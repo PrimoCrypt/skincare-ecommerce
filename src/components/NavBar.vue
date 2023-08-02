@@ -6,7 +6,7 @@
                 <router-link to="/">Home</router-link>
                 <router-link to="/products">Products</router-link>
                 <span>Sale</span>
-                <router-link to="/blog">Blog</router-link>
+                <router-link to="">Blog</router-link>
                 <router-link to="/about">About Us</router-link>
             </div>
             <span>
