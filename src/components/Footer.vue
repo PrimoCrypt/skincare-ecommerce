@@ -49,6 +49,7 @@ import { pageNameHeader } from "../pageData";
 .footer img {
     width: 100%;
     max-height: 600px;
+    
 }
 
 .footer-text {
