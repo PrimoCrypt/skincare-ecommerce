@@ -6,6 +6,10 @@ import App from '@/App.vue'
 
 // createApp(App).use(router).mount('#app')
 const router = createRouter(createWebHistory())
+router.beforeEach(()=>{
+    window.scrollTo(0,0)
+});
+
 const app = createApp(App)
 
 app.use(router).mount('#app')
