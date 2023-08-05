@@ -73,6 +73,7 @@ import { pageNameHeader, totalCartItems } from '@/pageData.js';
     align-items: center;
     flex-direction: row;
     justify-content: space-between;
+    height: 15vh;
 }
 
 
