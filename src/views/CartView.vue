@@ -55,7 +55,7 @@ const totalPrice = computed(() => {
             return acc + item.price * item.count;
     }, 0); 
     }
-  
+  removeItem
 });
 const totalItems = computed(() => {
     if(cartArray.value){
@@ -65,7 +65,7 @@ const totalItems = computed(() => {
     }
   
 });
-console.log(cartArray)
+console.log(cartArray.value[1])
 
 const props = defineProps(['value'])
 
@@ -78,39 +78,48 @@ const navigateToNotFound = () => {
     router.push('/none')
 }
 
+const removeItem = (index) => {
+//   cartArray.value[index].count = 0;
+  // Alternatively, you can completely remove the item from the cartArray if you don't want to display it at all.
+  cartArray.value.splice(index, 1);
+};
+
 </script>
 
 
 <template>
     <div class="container">
-          <div class="navigationBar">
-              <NavBar />
-          </div>
-          <div class="cart-body" v-for="(item, index) in cartArray" :key="item.index">
-              <hr>
-              <div class="item-data">
-                  <div class="left">
-                      <div class="image">
-                          <img :src="item.img" />
-                      </div>
-                      <div class="item-details">
-                          <h3>{{ item.name }}</h3>
-                          <h4>Clearamane</h4>
-                          <p>Size:<span class="item-size">   200 ml/3.3 fl oz</span></p>
-                          <p>Unit Price: ${{item.price}}</p>
-                          <h3 class="item-quantity">QTY: {{ item.count }} </h3>
-                      </div>
-                  </div>
-                  <div class="right">
-                    <p>Remove</p>
+        <div class="navigationBar">
+            <NavBar />
+        </div>
+        <div class="content">
+            <div class="cart-body" v-for="(item, index) in cartArray" :key="item.index">
+                <hr>
+                <div class="item-data">
+                    <div class="left">
+                        <router-link :to="{name: 'ItemDetails', params:{value: item.value}}">
+                            <div class="image">
+                                <img :src="item.img" />
+                            </div>
+                        </router-link>
+                        <div class="item-details">
+                            <h3>{{ item.name }}</h3>
+                            <h4>Clearamane</h4>
+                            <p>Size:<span class="item-size">   200 ml/3.3 fl oz</span></p>
+                            <p>Unit Price: ${{item.price}}</p>
+                            <h3 class="item-quantity">QTY: {{ item.count }} </h3>
+                        </div>
+                    </div>
+                    <div class="right">
+                    <p @click="removeItem(index)">Remove</p>
                     <h3>
                         ${{ (item.price * item.count).toFixed(2) }}
                     </h3>
-                  </div>
-              </div>
-          </div>
-          <hr>
-          <div class="other-section">
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="other-section">
             <div class="continue-shopping">
                 <router-link to="/products">Continue Shopping</router-link>
             </div>
@@ -119,8 +128,8 @@ const navigateToNotFound = () => {
                 <h4>Total:  <span class="value">${{ totalPrice?.toFixed(2) }}</span> </h4>
                 <button class="checkout-button" @click="navigateToNotFound">Proceed to checkout </button>
             </div>
-          </div>
-          
+            </div>
+        </div>
     </div>
   </template>
   
@@ -136,6 +145,9 @@ const navigateToNotFound = () => {
     color: #000;
     font-family: Rubik;
 }
+.content{
+    width:100% ;
+}
 .navigationBar{
     margin-right: 80px;
     color: #000;
@@ -143,41 +155,28 @@ const navigateToNotFound = () => {
 }
 .cart-body{
     width: 100%;
-}
-.table{
-    width: 100%;
-    border-collapse: collapse;
-    border: 0.5px solid #000;
+    height: 200px;
 }
 
-th{
-    border: 2px solid #000;
-    padding: 50px 10px;
-}
-td{
-    border: 2px solid #313131;
-    padding: 50px 10px;
-    height: 100px;
-}
 hr{
     margin: 0;
     width: 100%;
 }
 .image{
     padding: 0;
-    height: 200px;
+    height: 150px;
     margin-right: 20px;
 }
 .image img{
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     border-radius: 20px;
 }
 .item-data{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin: 40px 0;
+    margin: 25px 0;
 
 }
 .left{
@@ -189,10 +188,10 @@ hr{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 200px;
+    height: 150px;
 }
 .item-details h3{
-    margin: 0 0 20px 0;
+    margin: 0 0 10px 0;
     line-height: 1;
     font-weight: 500;
     font-size: 22px;
@@ -216,7 +215,8 @@ hr{
 }
 h3.item-quantity{
     margin: 10px 0 0 0;
-    font-size: 29px;
+    font-size: 20px;
+    transform: scaleY(1.2);
 }
 .right{
     display: flex;
@@ -225,6 +225,7 @@ h3.item-quantity{
 }
 .right p{
     margin: 0;
+    text-align: left;
 }
 .right h3{
     font-size: 29px;
