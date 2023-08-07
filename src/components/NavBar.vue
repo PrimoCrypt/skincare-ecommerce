@@ -134,6 +134,7 @@ import { pageNameHeader, totalCartItems } from '@/pageData.js';
         background: none;
         border: none;
         cursor: pointer;
+        padding: 0;
     }
     .hamburger-menu span {
         display: block;
