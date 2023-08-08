@@ -26,8 +26,8 @@
         <div class="homeNecessities">
             <Necessities />
         </div>
-        <div class="blogView">
-            <BlogView />
+        <div class="blogView" id="blogViewComp">
+            <BlogView/>
         </div>
     </div>
     <Footer />

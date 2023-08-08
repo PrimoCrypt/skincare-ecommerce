@@ -6,7 +6,7 @@
                 <router-link to="/">Home</router-link>
                 <router-link to="/products">Products</router-link>
                 <span>Sale</span>
-                <router-link to="">Blog</router-link>
+                <router-link to="/#blogViewComp">Blog</router-link>
                 <router-link to="/about">About Us</router-link>
             </div>
             <span>
@@ -27,9 +27,11 @@
                 </button>
                 <div class="nav-links" :class="{ show: isMenuOpen }">
                     <router-link to="/">Home</router-link>
+                    <hr>
                     <router-link to="/products">Products</router-link>
-                    <span>Sale</span>
+                    <hr>
                     <router-link to="/blog">Blog</router-link>
+                    <hr>
                     <router-link to="/about">About Us</router-link>
                 </div>
             </div>
@@ -68,24 +70,41 @@ import { pageNameHeader, totalCartItems } from '@/pageData.js';
 </script>
 
 <style scoped>
+hr{
+    color: black;
+    width: 90%;
+    margin: 0 0 0 5px;
+}
+.totalNavBar{
+    position: relative;
+}
+.whole-harmburger-menu{
+    position: relative;
+    top: 18px;
+    
+}
 .navbar {
     display: flex;
     align-items: center;
     flex-direction: row;
     justify-content: space-between;
-    height: 15vh;
+    height: 50px;
+    position: relative;
+    top: 0px;
 }
 
+.whole-harmburger-menu{
+    align-self: start;
+}
 
 .nav-link-center {
     width: 100%;
 
 }
 
-/* nav h1 {
-    float: left;
-    width: 120px;
-} */
+.navbar h1 {
+    margin: 0;
+}
 
 .nav-link{
     margin: 0 20px;
@@ -123,6 +142,12 @@ import { pageNameHeader, totalCartItems } from '@/pageData.js';
 
 
 @media (max-width: 700px) {
+    .navbar{
+        height: 50px
+    }
+    .navbar h1{
+        font-size: 2.5rem;
+    }
     /* .whole-harmburger-menu{
         align-self:baseline;
     } */
@@ -143,11 +168,7 @@ import { pageNameHeader, totalCartItems } from '@/pageData.js';
         margin-bottom: 5px;
         background-color: #000;
     }
-    .nav-links {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+
     .nav-links a, .nav-links span {
         margin: 10px 0;
         text-decoration: none;
@@ -160,14 +181,18 @@ import { pageNameHeader, totalCartItems } from '@/pageData.js';
     /* Hide the navigation links by default */
     .nav-links {
         display: none;
+        position: absolute;
+        
     }
     /* Show the navigation links when the menu is open */
     .nav-links.show {
         display: flex;
         flex-direction: column;
-        background-color: white;
+        background-color: #dddddd6e;
         width: 100px;
-        position: relative;
+        position: absolute;
+        right: 0px;
+        border-radius:10px;
     }
     
 }
