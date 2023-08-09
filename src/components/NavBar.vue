@@ -31,7 +31,7 @@
                         <hr>
                         <router-link to="/products">Products</router-link>
                         <hr>
-                        <router-link to="/blog">Blog</router-link>
+                        <a href="/#blogViewComp">Blog</a>
                         <hr>
                         <router-link to="/about">About Us</router-link>
                     </div>

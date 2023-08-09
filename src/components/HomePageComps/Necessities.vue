@@ -102,14 +102,28 @@
 
 
 @media (max-width:450px) {
+    .h1{
+        font-size: 2.3rem;
+    }
+    
     .item {
         flex-direction: column;
         justify-content: center;
         text-align: center;
     }
-
+    .item h2{
+        font-size: 1.7rem;
+        margin: 0;
+    }
+    .item p{
+        font-size: 1rem;
+    }
     .item img {
-        max-width: 100%;
-        height: auto;
+        max-width: 30vh;
+        height: 40vh;
+    }
+    .itemText{
+        margin: 0;
+        width: 90%;
     }
 }</style>

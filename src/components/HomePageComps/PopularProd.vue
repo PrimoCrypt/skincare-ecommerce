@@ -115,11 +115,16 @@ import { onMounted } from 'vue'
         margin: 0;
     }
     .item img{
-        width: 40vh;
-        height: 50vh;
+        width: 30vh;
+        height: 45vh;
     }
     .prod-price{
         margin-left: 20px;
     }
+    
+    .h1{
+        font-size: 2.3rem;
+    }
 }
+
 </style>../../pageData.js

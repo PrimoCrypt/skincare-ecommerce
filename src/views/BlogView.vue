@@ -1,7 +1,9 @@
 <template>
     <div class="container">
-        <h1>Allure's Blog</h1>
-        <p class="container-p">A close look at the skin care life and routine of celebrities, customers’ reviews about products,and inside scoop from our aesthetic experts.</p>
+        <div class="heading">
+            <h1 class="h1">Allure's Blog</h1>
+            <p class="container-p">A close look at the skin care life and routine of celebrities, customers’ reviews about products,and inside scoop from our aesthetic experts.</p>
+        </div>
         <div class="posts">
             <div class="post">
                 <img src="@/assets/Rectangle18.png">
@@ -75,6 +77,17 @@ export default {
 
 
 <style scoped>
+.h1 {
+    text-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    text-align: center;
+    color: #2f4333;
+    font-weight: 700;
+}
+.heading{
+    display: flex;
+    align-items: center;
+}
+
 *{
     display: flex;
     flex-direction: column;
@@ -135,7 +148,13 @@ export default {
     align-items: center;
 }
 @media (max-width:450px) {
-    
+    .h1{
+        font-size: 2.3rem;
+    }
+    .container-p{
+        width: 80%;
+        padding: 0;
+    }
     .post {
         display: flex;
         flex-direction: column;

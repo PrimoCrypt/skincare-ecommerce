@@ -158,31 +158,9 @@ td {
     padding: 50px 10px;
 }
 
-/* @media (max-width: 600px) {
-    tbody{
-        height: 100%;
-    }
-    .responsive-table tr {
-        width: 100%;
-        height: auto;
-    }
-
-    .responsive-table td {
-        display: inline-block;
-        width: 50%;
-        box-sizing: border-box;
-        height: 100%;
+@media (max-width:450px) {
+    .h1{
+        font-size: 2.3rem;
     }
 }
-
-@media (max-width: 300px) {
-    .responsive-table td {
-        display: block;
-        width: 100%;
-    }
-
-    table {
-        border-collapse: collapse;
-    }
-} */
 </style>

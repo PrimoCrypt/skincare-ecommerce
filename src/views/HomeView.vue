@@ -5,7 +5,7 @@
                 <NavBar />
             </div>
             <div class="homeHeaderMid">
-                <h3>{{ pageName }} : Skin for days</h3>
+                <h3>{{ pageName }} :<br> Skin for days</h3>
                 <p>Skin care us a science, {{ pageName }} makes it art. Reduce finelines and wrinkles with alpha hydroxy
                     acid skin care products. Say HI to a new found glow routine.</p>
                 <button @click="navigateToProductView">Shop now</button>
@@ -72,7 +72,7 @@ const navigateToProductView = () => {
 }
 
 .homeHeaderMid {
-    width: 60%;
+    width: 80%;
     text-align: left;
     margin: 0 80px;
 
@@ -84,6 +84,7 @@ const navigateToProductView = () => {
 }
 
 .homeHeaderMid p {
+    width: 80%;
     font-size: 1.4rem;
 }
 
@@ -154,4 +155,22 @@ const navigateToProductView = () => {
         margin: 0 20px;
     }
 }
+@media(max-width: 600px) and (max-height: 900px){
+    .homeHeader {
+        width: 100%;
+        height: 90vh;
+    }
+    .homeHeaderMid h3{
+        font-size: 2.5rem;
+    }
+    .homeHeaderMid p{
+        font-size: 1.2rem;
+        width: 100%;
+    }
+    .homeHeaderMid{
+        width: 80%;
+    }
+    
+}
+
 </style>

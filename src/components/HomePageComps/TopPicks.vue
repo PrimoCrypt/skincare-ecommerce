@@ -71,21 +71,6 @@ h4{
 .item{
     margin: 0 10px;
 }
-.item1 {
-    width: 300px;
-}
-
-.item2{
-    width: 300px;
-}
-
-.item3{
-    width: 300px;
-}
-
-.item4{
-    width: 300px;
-}
 .ProdnPrice{
     flex-direction: column;
     text-align: left;
@@ -136,4 +121,20 @@ h4{
     align-items: center;
     margin-bottom: 20px;
 }
-</style>../../pageData.js
+
+@media (max-width:450px) {
+    .h1{
+        font-size: 2.3rem;
+    }
+    .item{
+        width: 70%;
+    }
+    .item img{
+        width: 100%;
+        height: 400px;
+    }
+    .ProdnPrice h4{
+        font-size: 1.5rem;
+    }
+}
+</style>
