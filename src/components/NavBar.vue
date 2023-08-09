@@ -16,23 +16,25 @@
         
         <div v-else class="navbar content">
             <h1>{{ pageNameHeader }}.</h1>
-            <span>
-                <router-link to="/cart">Cart({{ totalCartItems.length }})</router-link>
-            </span>
-            <div class="whole-harmburger-menu">
-                <button class="hamburger-menu" @click="toggleMenu" :class="{ 'active': isMenuOpen }">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                <div class="nav-links" :class="{ show: isMenuOpen }">
-                    <router-link to="/">Home</router-link>
-                    <hr>
-                    <router-link to="/products">Products</router-link>
-                    <hr>
-                    <router-link to="/blog">Blog</router-link>
-                    <hr>
-                    <router-link to="/about">About Us</router-link>
+            <div class="leftside">
+                <span>
+                    <router-link to="/cart">Cart({{ totalCartItems.length }})</router-link>
+                </span>
+                <div class="whole-harmburger-menu">
+                    <button class="hamburger-menu" @click="toggleMenu" :class="{ 'active': isMenuOpen }">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <div class="nav-links" :class="{ show: isMenuOpen }">
+                        <router-link to="/">Home</router-link>
+                        <hr>
+                        <router-link to="/products">Products</router-link>
+                        <hr>
+                        <router-link to="/blog">Blog</router-link>
+                        <hr>
+                        <router-link to="/about">About Us</router-link>
+                    </div>
                 </div>
             </div>
         </div>
@@ -78,11 +80,6 @@ hr{
 .totalNavBar{
     position: relative;
 }
-.whole-harmburger-menu{
-    position: relative;
-    top: 18px;
-    
-}
 .navbar {
     display: flex;
     align-items: center;
@@ -91,10 +88,6 @@ hr{
     height: 50px;
     position: relative;
     top: 0px;
-}
-
-.whole-harmburger-menu{
-    align-self: start;
 }
 
 .nav-link-center {
@@ -161,6 +154,9 @@ hr{
         cursor: pointer;
         padding: 0;
     }
+    .hamburger-menu:focus, .hamburger-menu:focus-visible{
+        outline: none;
+    }
     .hamburger-menu span {
         display: block;
         width: 25px;
@@ -169,6 +165,9 @@ hr{
         background-color: #000;
     }
 
+    .hamburger-menu span:last-child{
+        margin: 0;
+    }
     .nav-links a, .nav-links span {
         margin: 10px 0;
         text-decoration: none;
@@ -194,7 +193,16 @@ hr{
         right: 0px;
         border-radius:10px;
     }
-    
+    .leftside{
+        display: flex;
+        align-items: center;
+    }
+}
+
+@media (max-width: 500px){
+    .navbar h1{
+        font-size: 2rem;
+    }
 }
 
 
