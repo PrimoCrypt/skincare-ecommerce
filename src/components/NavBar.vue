@@ -119,13 +119,19 @@ hr{
 }
 
 
-@media (max-width: 800px) {
+@media (max-width: 900px) {
     .navbar a {
-        margin: 0 10px;
+        margin: 0 5px;
     }
 }
 
 
+@media (max-width: 800px) {
+    .navbar h1 {
+        font-size: 2rem;
+    }
+
+}
 @media (max-width: 750px) {
     .navbar a {
         margin: 0 5px;
