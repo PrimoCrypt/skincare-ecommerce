@@ -84,7 +84,7 @@ const navigateToProductView = () => {
 }
 
 .homeHeaderMid p {
-    width: 80%;
+    width: 60%;
     font-size: 1.4rem;
 }
 
@@ -173,4 +173,23 @@ const navigateToProductView = () => {
     
 }
 
+@media (max-width:450px) and (max-height: 650px){
+    .homeHeaderMid h3{
+        margin-top: 60px;
+        margin-bottom: 10px;
+    }
+    .homeHeaderMid p{
+       font-size: 1rem;
+    }
+    .homeHeaderMid button{
+        padding: 15px 40px;
+        font-size: 1rem;
+    }
+}
+@media(max-width: 350px) and (max-height: 500px){
+    .homeHeaderMid h3{
+        font-size: 1.5rem;
+        margin-top: 30px;
+    }
+}
 </style>
