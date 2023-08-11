@@ -83,6 +83,18 @@ import { pageNameHeader } from "../pageData";
     display: flex;
     flex-direction: column;
 }
+.nav-links a{
+    color: white;
+}
+.nav-links a:hover{
+    color: rgba(186, 186, 186, 0.854);
+}
+.nav-links a:active{
+    color: rgba(255, 0, 0, 0.854);
+}
+.nav-links a:focus{
+    color: rgba(130, 130, 130, 0.478);
+}
 @media (max-width: 1240px){
     .footer-text{
         margin: 40px 100px 0;
