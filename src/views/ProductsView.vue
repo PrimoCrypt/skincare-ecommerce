@@ -208,6 +208,7 @@ import { ref, onMounted, onUnmounted } from 'vue';
 
 .productsPage{
     color: #000;
+    background: #F1F5F2;
     width: 100%;
 }
 .navigationBar{
