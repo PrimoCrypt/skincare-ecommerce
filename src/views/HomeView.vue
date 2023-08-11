@@ -1,10 +1,10 @@
 <template>
     <div class="home">
-        <div class="homeHeader">
+        <div class="homeHeader" :class="{ show: isMenuOpen }">
             <div class="navigationBar">
                 <NavBar />
             </div>
-            <div class="homeHeaderMid">
+            <div class="homeHeaderMid" @click="log">
                 <h3>{{ pageName }} :<br> Skin for days</h3>
                 <p>Skin care us a science, {{ pageName }} makes it art. Reduce finelines and wrinkles with alpha hydroxy
                     acid skin care products. Say HI to a new found glow routine.</p>
@@ -44,6 +44,7 @@ import BlogView from '@/views/BlogView.vue'
 import Footer from '@/components/Footer.vue'
 import { pageName } from '@/pageData.js'
 import { useRouter, useRoute } from 'vue-router';
+import {inject } from 'vue'
 
 
 // const { pageName } = pageData
@@ -52,12 +53,20 @@ const route = useRoute();
 const navigateToProductView = () => {
     router.push('/products')
 }
+
+// Inject the state and method from the parent component
+const isMenuOpen = inject('isMenuOpen');
+const toggleMenu = inject('toggleMenu');
+const log =()=>{
+    console.log(isMenuOpen.value)
+}
+
 </script>
 
 <style scoped>
-/* .home{
-    
-} */
+.home{
+  background: #F1F5F2;  
+}
 
 .homeHeader {
     width: 100%;
@@ -67,14 +76,37 @@ const navigateToProductView = () => {
     background-position: center;
 }
 
+.homeHeader.show {
+    background: linear-gradient(rgba(0, 0, 0, 0.837), rgba(0, 0, 0, 0.827)), url('/src/assets/HomeHeaderImage.jpeg') no-repeat;
+    width: 100%;
+    height: 120vh;
+    background-size: cover;
+    background-position: center;
+}
+
+
 .navigationBar{
     margin: 0 80px;
 }
 
+.navigationBar /deep/ .nav-links.show{
+    background: #ffffffed;
+}
+.navigationBar /deep/ .nav-links.show a{
+    color: rgb(0, 0, 0);
+}
 .navigationBar /deep/ .nav-links a{
     color: white;
 }
 .navigationBar /deep/ .nav-cart a{
+    color: white;
+}
+.navigationBar /deep/ .show .sale{
+    border: 2px solid rgb(0, 0, 0);
+    color: rgb(0, 0, 0);
+}
+.navigationBar /deep/ .sale{
+    border: 1px solid rgb(255, 255, 255);
     color: white;
 }
 
@@ -164,6 +196,10 @@ const navigateToProductView = () => {
 }
 @media(max-width: 600px) and (max-height: 900px){
     .homeHeader {
+        width: 100%;
+        height: 90vh;
+    }
+    .homeHeader.show {
         width: 100%;
         height: 90vh;
     }

@@ -5,7 +5,7 @@
             <div class="nav-links">
                 <router-link to="/">Home</router-link>
                 <router-link to="/products">Products</router-link>
-                <span>Sale</span>
+                <span class="sale">Sale</span>
                 <router-link to="/#blogViewComp">Blog</router-link>
                 <router-link to="/about">About Us</router-link>
             </div>
@@ -32,11 +32,9 @@
                     </button>
                     <div class="nav-links" :class="{ show: isMenuOpen }">
                         <router-link to="/">Home</router-link>
-                        <hr>
                         <router-link to="/products">Products</router-link>
-                        <hr>
+                        <span class="sale">Sale</span>
                         <a href="/#blogViewComp">Blog</a>
-                        <hr>
                         <router-link to="/about">About Us</router-link>
                     </div>
                 </div>
@@ -46,14 +44,12 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted,inject } from 'vue'
 import { pageNameHeader, totalCartItems } from '@/pageData.js';
 
-    const isMenuOpen = ref(false)
+    const toggleMenu = inject('toggleMenu');
+    const isMenuOpen = inject('isMenuOpen')
 
-    const toggleMenu = () => {
-        isMenuOpen.value = !isMenuOpen.value
-    }
 
     const isSmallScreen = ref(window.innerWidth < 700);
 
@@ -69,6 +65,7 @@ import { pageNameHeader, totalCartItems } from '@/pageData.js';
         window.removeEventListener('resize', handleResize);
     });
 
+    
     
 
 </script>
@@ -127,6 +124,14 @@ hr{
     margin: 0 20px;
     text-decoration: none;
     color: black;
+}
+
+.sale{
+    border: 1px solid black;
+    border-radius: 100%;
+    padding: 6px 30px;
+    cursor: pointer;
+    font-weight: 500;
 }
 
 .navbar a.router-link-exact-active {
@@ -202,21 +207,54 @@ hr{
         padding-left: 10px;
 
     }
+
+    
     /* Hide the navigation links by default */
     .nav-links {
         display: none;
         position: absolute;
-        
     }
     /* Show the navigation links when the menu is open */
     .nav-links.show {
         display: flex;
         flex-direction: column;
-        background-color: #dddddd6e;
-        width: 100px;
+        background: #F1F5F2;  
+        width: 90%;
+        height:100vh;
         position: absolute;
         right: 0px;
         border-radius:10px;
+        margin-right: -20px;
+        margin-top: 10px;
+        font-size: 1.5rem;
+        align-items: center;
+        opacity: 1;
+        animation: slideIn 0.8s forwards;
+    }
+        .nav-links.show.slide-out {
+            animation: slideOut 0.5s backwards;
+        }
+    @keyframes slideIn {
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0%);
+        opacity: 1;
+      }
+    }
+      
+      /* Apply slideOut animation when closing the menu */
+      
+    .nav-links.show a,.nav-links.show span {
+        text-align: center;
+        margin-top: 40px;
+        font-size: 1.3rem;
+    }
+    .nav-links.show .sale{
+        padding: 15px 0px;
+        width: 50%;
     }
     .leftside{
         display: flex;

@@ -1,5 +1,15 @@
 <script setup>
-import HomeView from '@/views/HomeView.vue';
+import { provide,ref } from 'vue';
+
+// Define the isMenuOpen state and the toggleMenu method
+const isMenuOpen = ref(false);
+const toggleMenu = () => {
+  isMenuOpen.value = !isMenuOpen.value;
+};
+
+// Provide the state and method to child components
+provide('isMenuOpen', isMenuOpen);
+provide('toggleMenu', toggleMenu);
 </script>
 
 <template>
