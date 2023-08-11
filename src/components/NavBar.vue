@@ -30,12 +30,12 @@
                         <span></span>
                         <span></span>
                     </button>
-                    <div class="nav-links" :class="{ show: isMenuOpen }">
-                        <router-link to="/">Home</router-link>
-                        <router-link to="/products">Products</router-link>
+                    <div class="nav-links" :class="{ show: isMenuOpen }" >
+                        <router-link to="/" @click="toggleMenu">Home</router-link>
+                        <router-link to="/products" @click="toggleMenu">Products</router-link>
                         <span class="sale">Sale</span>
-                        <a href="/#blogViewComp">Blog</a>
-                        <router-link to="/about">About Us</router-link>
+                        <a href="/#blogViewComp" @click="toggleMenu">Blog</a>
+                        <router-link to="/about" @click="toggleMenu">About Us</router-link>
                     </div>
                 </div>
             </div>
@@ -231,9 +231,7 @@ hr{
         opacity: 1;
         animation: slideIn 0.8s forwards;
     }
-        .nav-links.show.slide-out {
-            animation: slideOut 0.5s backwards;
-        }
+
     @keyframes slideIn {
       from {
         transform: translateX(100%);
