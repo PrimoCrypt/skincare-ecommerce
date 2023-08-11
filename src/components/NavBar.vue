@@ -9,16 +9,20 @@
                 <router-link to="/#blogViewComp">Blog</router-link>
                 <router-link to="/about">About Us</router-link>
             </div>
-            <span>
-                <router-link to="/cart">Cart({{ totalCartItems.length }})</router-link>
+            <span class="nav-cart">
+                <router-link to="/cart">
+                    <font-awesome-icon :icon="['fas', 'shopping-cart']" size="lg" /><span class="cart-quantity">{{ totalCartItems.length }}</span>
+                </router-link>
             </span>
         </div>
         
         <div v-else class="navbar content">
             <h1>{{ pageNameHeader }}.</h1>
             <div class="leftside">
-                <span>
-                    <router-link to="/cart">Cart({{ totalCartItems.length }})</router-link>
+                <span class="nav-cart">
+                    <router-link to="/cart">
+                        <font-awesome-icon :icon="['fas', 'shopping-cart']" size="lg" /><span class="cart-quantity">{{ totalCartItems.length }}</span>
+                    </router-link>
                 </span>
                 <div class="whole-harmburger-menu">
                     <button class="hamburger-menu" @click="toggleMenu" :class="{ 'active': isMenuOpen }">
@@ -39,14 +43,11 @@
             </div>
         </div>
     </div>
-        
-    
 </template>
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 import { pageNameHeader, totalCartItems } from '@/pageData.js';
-
 
     const isMenuOpen = ref(false)
 
@@ -68,6 +69,7 @@ import { pageNameHeader, totalCartItems } from '@/pageData.js';
         window.removeEventListener('resize', handleResize);
     });
 
+    
 
 </script>
 
@@ -87,7 +89,8 @@ hr{
     justify-content: space-between;
     height: 50px;
     position: relative;
-    top: 0px;
+    top: 10px;
+    margin-bottom: 30px;
 }
 
 .nav-link-center {
@@ -99,18 +102,31 @@ hr{
     margin: 0;
 }
 
-.nav-link{
-    margin: 0 20px;
+.whole-harmburger-menu{
+    margin-left: 20px;
 }
 
-.nav-link a{
-    width: 100px;
+.nav-cart{
+    position: relative;
 }
-
+.cart-quantity{
+    position: absolute;
+    top: -4px;
+    right:12px;
+    background-color: white;
+    border: 1px black solid;
+    width: 13px;
+    height: 13px;
+    border-radius: 50% ;
+    font-size: 10px;
+    color: black;
+    font-family: Rubik;
+    font-weight: 700;
+}
 .navbar a {
     margin: 0 20px;
     text-decoration: none;
-    color: #E9E9E9;
+    color: black;
 }
 
 .navbar a.router-link-exact-active {
@@ -122,6 +138,9 @@ hr{
 @media (max-width: 900px) {
     .navbar a {
         margin: 0 5px;
+    }
+    .cart-quantity{
+        right: -3px;
     }
 }
 

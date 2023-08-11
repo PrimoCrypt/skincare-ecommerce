@@ -71,6 +71,13 @@ const navigateToProductView = () => {
     margin: 0 80px;
 }
 
+.navigationBar /deep/ .nav-links a{
+    color: white;
+}
+.navigationBar /deep/ .nav-cart a{
+    color: white;
+}
+
 .homeHeaderMid {
     width: 80%;
     text-align: left;
