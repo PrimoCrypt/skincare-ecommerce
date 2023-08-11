@@ -99,21 +99,20 @@
                     <div class="item" v-for="item in productsData" :key="item.value">
                         <router-link :to="{name: 'ItemDetails', params:{value: item.value}}">
                             <img :src="item.img" />
-                            <div class="item-bottom">
-                                <div class="item-details">
-                                    <h4>{{item.name}}</h4>
-                                    <div class="prices">
-                                        <h4>${{ item.price }}</h4>
-                                    </div>
+                        </router-link>
+                        <div class="item-bottom">
+                            <div class="item-details">
+                                <h4>{{item.name}}</h4>
+                                <div class="prices">
+                                    <h4>${{ item.price }}</h4>
                                 </div>
-                                <h4 class="addToCart" @click="addToCart(item.value)">Add to cart 
-                                    <span class="div">
-                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill="none" d="M0 0h24v24H0z"></path><path d="M15 5l-1.41 1.41L18.17 11H2v2h16.17l-4.59 4.59L15 19l7-7-7-7z"></path></svg>
-                                    </span>
-                                </h4>
                             </div>
-                            
-                        </router-link>    
+                        </div>
+                         <h4 class="addToCart" @click="addToCart(item.value)">Add to cart 
+                            <span class="div">
+                                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill="none" d="M0 0h24v24H0z"></path><path d="M15 5l-1.41 1.41L18.17 11H2v2h16.17l-4.59 4.59L15 19l7-7-7-7z"></path></svg>
+                            </span>
+                        </h4>   
                     </div>
                 </div>
             </div>
@@ -208,7 +207,6 @@ import { ref, onMounted, onUnmounted } from 'vue';
 
 .productsPage{
     color: #000;
-    background: #F1F5F2;
     width: 100%;
 }
 .navigationBar{
@@ -281,6 +279,10 @@ import { ref, onMounted, onUnmounted } from 'vue';
 .addToCart{
     cursor: pointer;
 }
+.addToCart:hover{
+    color: #1e1e1e;
+    transform: scaleZ(1.2);
+}
 
 .product{
     max-width: 100%;
@@ -298,6 +300,29 @@ import { ref, onMounted, onUnmounted } from 'vue';
 
 .item img{
     width: 100%;
+}
+
+.item a{
+    color: #000;
+}
+.item img:hover{
+    transform: scale(1.03);
+}
+.item img:focus{
+    transform: scale(1.01);
+}
+
+.item a:hover{
+    color: #424242;
+}
+.item a:focus{
+    color: #b2b2b2;
+}
+.item h4{
+    margin: 5px 0;   
+}
+.item .addToCart{
+    margin-top: 10px;
 }
 .priceSort p{
     color: black;

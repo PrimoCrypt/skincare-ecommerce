@@ -153,6 +153,7 @@ const removeItem = (index) => {
     max-width: 100%;
     margin:0 80px;
     color: #000;
+    background: #F1F5F2;
     font-family: Rubik;
 }
 .content{

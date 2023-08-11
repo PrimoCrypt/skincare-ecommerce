@@ -78,6 +78,7 @@ hr{
 }
 .totalNavBar{
     position: relative;
+    z-index: 1;
 }
 .navbar {
     display: flex;

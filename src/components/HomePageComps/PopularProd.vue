@@ -5,12 +5,12 @@
             <div class="item"  v-for="item in popularProdData" :key="item.value">
                 <router-link :to="{name: 'ItemDetails', params:{value: item.value, image: item.img, name: item.name, price: item.price}}">
                     <img :src="item.img" />
-                    <div class="ProdnPrice">
-                        <h4>{{item.name}}</h4>
-                        <h4 class="prod-price">${{ item.price }}</h4>
-                    </div>
+                    
                 </router-link>
-                
+                <div class="ProdnPrice">
+                    <h4>{{item.name}}</h4>
+                    <h4 class="prod-price">${{ item.price }}</h4>
+                </div>
             </div>
         </div>
     </div>
@@ -60,21 +60,13 @@ import { onMounted } from 'vue'
     max-width: 100%;
     height: auto;
 }
-/* .item1 {
-
+.item img:hover{
+    transform: scale(1.03);
+}
+.item img:focus{
+    transform: scale(1.01);
 }
 
-.item2{
-
-}
-
-.item3{
-
-}
-
-.item4{
-
-} */
 .ProdnPrice{
     flex-direction: row;
     justify-content: space-between;
@@ -117,6 +109,9 @@ import { onMounted } from 'vue'
     .item img{
         width: 30vh;
         height: 45vh;
+    }
+    .ProdnPrice{
+        margin-top: 0px;
     }
     .prod-price{
         margin-left: 20px;
