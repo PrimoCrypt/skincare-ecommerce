@@ -81,6 +81,10 @@ h4{
 .item{
     padding: 0 10px;
     max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
 }
 .item img{
     max-width: 100%;
