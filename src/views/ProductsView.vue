@@ -58,28 +58,29 @@
                         <h5>Filter ></h5>
                     </div>
                 
-                    <div class="filter-window" v-if="isFilterOpen">
-                        <div class="filter-content">
+                    <div class="filter-window" v-if="isFilterOpen" @click="isFilterOpen = false">
+                        <div class="filter-content" @click.stop>
                             <div class="filter-content-details">
                                 <h3>Sort by</h3>
-                                <h5 @click="setSortBy('new-releases')" :class="{ active: sortBy === 'new-releases' }">New Releases</h5>   
-                                <h5 @click="setSortBy('price-high-low')" :class="{ active: sortBy === 'price-high-low' }">Price : High to Low</h5>
-                                <h5 @click="setSortBy('price-low-high')" :class="{ active: sortBy === 'price-low-high' }">Price : Low to High</h5>
-                                <h5 @click="setSortBy('name-a-z')" :class="{ active: sortBy === 'name-a-z' }">Name : A to Z</h5>
-                                <h5 @click="setSortBy('name-z-a')" :class="{ active: sortBy === 'name-z-a' }">Name : Z to A</h5>
-                                <div class="categorySort">
-                                    <h5>Category</h5>
-                                    <div class="category-label">
-                                        <label v-for="category in productsStore.getCategories" :key="category">
-                                            <input 
-                                                type="checkbox" 
-                                                :checked="selectedCategories.includes(category)"
-                                                @change="toggleCategory(category)" 
-                                            />
-                                            {{ category }}
-                                        </label>
+                                <h5 @click="setSortBy('new-releases')" :class="{ active: sortBy === 'new-releases' }" class="sort-option">New Releases</h5>   
+                                <h5 @click="setSortBy('price-high-low')" :class="{ active: sortBy === 'price-high-low' }" class="sort-option">Price : High to Low</h5>
+                                <h5 @click="setSortBy('price-low-high')" :class="{ active: sortBy === 'price-low-high' }" class="sort-option">Price : Low to High</h5>
+                                <h5 @click="setSortBy('name-a-z')" :class="{ active: sortBy === 'name-a-z' }" class="sort-option">Name : A to Z</h5>
+                                <h5 @click="setSortBy('name-z-a')" :class="{ active: sortBy === 'name-z-a' }" class="sort-option">Name : Z to A</h5>
+                                                                    <div class="categorySort">
+                                        <h5>Category</h5>
+                                        <div class="category-label">
+                                            <label v-for="category in productsStore.getCategories" :key="category" 
+                                                   :class="{ active: selectedCategories.includes(category) }">
+                                                <input 
+                                                    type="checkbox" 
+                                                    :checked="selectedCategories.includes(category)"
+                                                    @change="toggleCategory(category)" 
+                                                />
+                                                {{ category }}
+                                            </label>
+                                        </div>
                                     </div>
-                                </div>
                                 <div class="priceSort">
                                     <h5>Price</h5>
                                     <p @click="setPriceRange('all')" :class="{ active: priceRange === 'all' }">All</p>
@@ -384,6 +385,15 @@ const clearAllFilters = () => {
     color: white;
 }
 
+.filter h3 {
+    color: #2F4333;
+    font-size: 18px;
+    font-weight: 700;
+    margin: 20px 0 12px 0;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #2F4333;
+}
+
 .filter h5 {
     color: black;
     text-decoration: none;
@@ -392,6 +402,7 @@ const clearAllFilters = () => {
     border-radius: 4px;
     transition: background-color 0.3s;
     margin: 4px 0;
+    font-weight: 500;
 }
 
 .filter h5:hover {
@@ -449,26 +460,30 @@ const clearAllFilters = () => {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000; /* Make sure the filter window is above other content */
+    z-index: 1000;
+    overflow: hidden;
   }
   
   /* Style for the filter content within the window */
   .filter-content {
     position: relative;
     max-width: 80%;
-    max-height: auto;
+    max-height: 80vh;
     width: 100%;
     padding: 0;
     background-color: white;
     border-radius: 10px;
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
   }
   .filter-content-details{
     padding: 20px;
+    max-height: calc(80vh - 60px);
+    overflow-y: auto;
   }
   
   /* Style for the close button */
@@ -608,26 +623,111 @@ const clearAllFilters = () => {
     }
     .ss-filter h5{
         margin-top: 0;
+        cursor: pointer;
     }
     .filter-content{
         max-height: 70%;
         overflow: scroll;
     }
-    .filter-content::-webkit-scrollbar{
-        width: 10px;
-    }
-    .filter-content::-webkit-scrollbar-thumb{
-        background-color: #888;
-        border-radius: 10px;
-    }
-    .filter-content::-webkit-scrollbar-thumb:hover{
-        background-color: #666;
-    }
-    .filter-content::-webkit-scrollbar-thumb:active{
-        background-color: #444;
-    }
+      .filter-content::-webkit-scrollbar,
+  .filter-content-details::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .filter-content::-webkit-scrollbar-thumb,
+  .filter-content-details::-webkit-scrollbar-thumb {
+    background-color: #2F4333;
+    border-radius: 4px;
+  }
+  
+  .filter-content::-webkit-scrollbar-thumb:hover,
+  .filter-content-details::-webkit-scrollbar-thumb:hover {
+    background-color: #1a2a1f;
+  }
+  
+  .filter-content::-webkit-scrollbar-track,
+  .filter-content-details::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+    border-radius: 4px;
+  }
     .filter-content h3{
         margin-top: 0;
+        color: #2F4333;
+        font-size: 18px;
+        font-weight: 700;
+        margin: 20px 0 12px 0;
+        padding-bottom: 8px;
+        border-bottom: 2px solid #2F4333;
+    }
+    
+    .filter-content h5 {
+        font-weight: 500;
+    }
+    
+    .filter-content .categorySort label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin: 8px 0;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 4px;
+        transition: all 0.3s;
+        font-weight: 500;
+    }
+    
+    .filter-content .categorySort label:hover {
+        background-color: rgba(47, 67, 51, 0.1);
+        color: #2F4333;
+        transform: translateX(4px);
+    }
+    
+    .filter-content .categorySort label.active {
+        background-color: #2F4333;
+        color: white;
+    }
+    
+    .filter-content .priceSort p {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 4px;
+        transition: all 0.3s;
+        margin: 4px 0;
+    }
+    
+    .filter-content .priceSort p:hover {
+        background-color: rgba(47, 67, 51, 0.1);
+        color: #2F4333;
+        transform: translateX(4px);
+    }
+    
+    .filter-content .priceSort p.active {
+        background-color: #2F4333;
+        color: white;
+    }
+    
+    .filter-content .sort-option {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 4px;
+        transition: all 0.3s;
+        margin: 4px 0;
+        font-weight: 500;
+    }
+    
+    .filter-content .sort-option:hover {
+        background-color: rgba(47, 67, 51, 0.1);
+        color: #2F4333;
+        transform: translateX(4px);
+    }
+    
+    .filter-content .sort-option.active {
+        background-color: #2F4333;
+        color: white;
     }
     .close-filter{
         top: 10px;
