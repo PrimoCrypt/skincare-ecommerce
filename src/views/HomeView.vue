@@ -27,7 +27,7 @@
             <Necessities />
         </div>
         <div class="blogView" id="blogViewComp">
-            <BlogView/>
+            <BlogSection/>
         </div>
     </div>
     <Footer />
@@ -40,7 +40,7 @@ import WhyUs from '@/components/HomePageComps/WhyUs.vue'
 import PopularProd from '@/components/HomePageComps/PopularProd.vue'
 import TopPicks from '@/components/HomePageComps/TopPicks.vue'
 import Necessities from '@/components/HomePageComps/Necessities.vue'
-import BlogView from '@/views/BlogView.vue'
+import BlogSection from '@/components/HomePageComps/BlogSection.vue'
 import Footer from '@/components/Footer.vue'
 import { pageName } from '@/pageData.js'
 import { useRouter, useRoute } from 'vue-router';

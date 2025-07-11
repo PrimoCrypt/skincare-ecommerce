@@ -67,9 +67,9 @@
                                 <h5 @click="setSortBy('price-low-high')" :class="{ active: sortBy === 'price-low-high' }" class="sort-option">Price : Low to High</h5>
                                 <h5 @click="setSortBy('name-a-z')" :class="{ active: sortBy === 'name-a-z' }" class="sort-option">Name : A to Z</h5>
                                 <h5 @click="setSortBy('name-z-a')" :class="{ active: sortBy === 'name-z-a' }" class="sort-option">Name : Z to A</h5>
-                                                                    <div class="categorySort">
-                                        <h5>Category</h5>
-                                        <div class="category-label">
+                                <div class="categorySort">
+                                    <h5>Category</h5>
+                                    <div class="category-label">
                                             <label v-for="category in productsStore.getCategories" :key="category" 
                                                    :class="{ active: selectedCategories.includes(category) }">
                                                 <input 
@@ -78,9 +78,9 @@
                                                     @change="toggleCategory(category)" 
                                                 />
                                                 {{ category }}
-                                            </label>
-                                        </div>
+                                        </label>
                                     </div>
+                                </div>
                                 <div class="priceSort">
                                     <h5>Price</h5>
                                     <p @click="setPriceRange('all')" :class="{ active: priceRange === 'all' }">All</p>
@@ -649,7 +649,7 @@ const clearAllFilters = () => {
   .filter-content-details::-webkit-scrollbar-track {
     background-color: #f1f1f1;
     border-radius: 4px;
-  }
+    }
     .filter-content h3{
         margin-top: 0;
         color: #2F4333;

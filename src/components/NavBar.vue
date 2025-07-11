@@ -6,7 +6,7 @@
                 <router-link to="/">Home</router-link>
                 <router-link to="/products">Products</router-link>
                 <span class="sale">Sale</span>
-                <router-link to="/#blogViewComp">Blog</router-link>
+                <router-link to="/blog">Blog</router-link>
                 <router-link to="/about">About Us</router-link>
             </div>
             <span class="nav-cart">
@@ -34,7 +34,7 @@
                         <router-link to="/" @click="toggleMenu">Home</router-link>
                         <router-link to="/products" @click="toggleMenu">Products</router-link>
                         <span class="sale">Sale</span>
-                        <a href="/#blogViewComp" @click="toggleMenu">Blog</a>
+                        <router-link to="/blog" @click="toggleMenu">Blog</router-link>
                         <router-link to="/about" @click="toggleMenu">About Us</router-link>
                     </div>
                 </div>

@@ -1,80 +1,72 @@
 <template>
-    <div class="container">
-        <div class="heading">
-            <h1 class="h1">Allure's Blog</h1>
-            <p class="container-p">A close look at the skin care life and routine of celebrities, customers’ reviews about products,and inside scoop from our aesthetic experts.</p>
-        </div>
-        <div class="posts">
-            <div class="post">
-                <img src="@/assets/Rectangle18.png">
-                <div class="post-content">
-                    <h2>The Absolute Best Skin Product for Men at Allure</h2>
-                    <p id="post-p">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non, volutpat nunc, amet laoreet odio dolor nec.
-                        Penatibus nisi amet dolor mattis</p>
-                    <h4 class="read_more">Read more
-                        <span class="div">
-                            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em"
-                                width="1em" xmlns="http://www.w3.org/2000/svg">
-                                <path fill="none" d="M0 0h24v24H0z"></path>
-                                <path d="M15 5l-1.41 1.41L18.17 11H2v2h16.17l-4.59 4.59L15 19l7-7-7-7z"></path>
-                            </svg>
-                        </span>
-                    </h4>
-                </div>
+    <div class="blog-page">
+        <NavBar />
+        <div class="container">
+            <div class="heading">
+                <h1 class="h1">Allure's Blog</h1>
+                <p class="container-p">A close look at the skin care life and routine of celebrities, customers’ reviews about products,and inside scoop from our aesthetic experts.</p>
             </div>
-            <div class="post">
-                <img src="@/assets/Rectangle19.png">
-                <div class="post-content">
-                    <h2>The Absolute Best Skin Product for Men at Allure</h2>
-                    <p id="post-p">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non, volutpat nunc, amet laoreet odio dolor nec.
-                        Penatibus nisi amet dolor mattis</p>
-                    <h4 class="read_more">Read more
-                        <span class="div">
-                            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em"
-                                width="1em" xmlns="http://www.w3.org/2000/svg">
-                                <path fill="none" d="M0 0h24v24H0z"></path>
-                                <path d="M15 5l-1.41 1.41L18.17 11H2v2h16.17l-4.59 4.59L15 19l7-7-7-7z"></path>
-                            </svg>
-                        </span>
-                    </h4>
+            <div class="posts">
+                <div class="post">
+                    <img src="@/assets/Rectangle18.png">
+                    <div class="post-content">
+                        <h2>The Absolute Best Skin Product for Men at Allure</h2>
+                        <p id="post-p">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non, volutpat nunc, amet laoreet odio dolor nec.
+                            Penatibus nisi amet dolor mattis</p>
+                        <h4 class="read_more">Read more
+                            <span class="div">
+                                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em"
+                                    width="1em" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill="none" d="M0 0h24v24H0z"></path>
+                                    <path d="M15 5l-1.41 1.41L18.17 11H2v2h16.17l-4.59 4.59L15 19l7-7-7-7z"></path>
+                                </svg>
+                            </span>
+                        </h4>
+                    </div>
                 </div>
-            </div>
-            <div class="post">
-                <img src="@/assets/Rectangle20.png">
-                <div class="post-content">
-                    <h2>The Absolute Best Skin Product for Men at Allure</h2>
-                    <p id="post-p">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non, volutpat nunc, amet laoreet odio dolor nec.
-                        Penatibus nisi amet dolor mattis</p>
-                    <h4 class="read_more">Read more
-                        <span class="div">
-                            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em"
-                                width="1em" xmlns="http://www.w3.org/2000/svg">
-                                <path fill="none" d="M0 0h24v24H0z"></path>
-                                <path d="M15 5l-1.41 1.41L18.17 11H2v2h16.17l-4.59 4.59L15 19l7-7-7-7z"></path>
-                            </svg>
-                        </span>
-                    </h4>
+                <div class="post">
+                    <img src="@/assets/Rectangle19.png">
+                    <div class="post-content">
+                        <h2>The Absolute Best Skin Product for Men at Allure</h2>
+                        <p id="post-p">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non, volutpat nunc, amet laoreet odio dolor nec.
+                            Penatibus nisi amet dolor mattis</p>
+                        <h4 class="read_more">Read more
+                            <span class="div">
+                                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em"
+                                    width="1em" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill="none" d="M0 0h24v24H0z"></path>
+                                    <path d="M15 5l-1.41 1.41L18.17 11H2v2h16.17l-4.59 4.59L15 19l7-7-7-7z"></path>
+                                </svg>
+                            </span>
+                        </h4>
+                    </div>
                 </div>
-                
+                <div class="post">
+                    <img src="@/assets/Rectangle20.png">
+                    <div class="post-content">
+                        <h2>The Absolute Best Skin Product for Men at Allure</h2>
+                        <p id="post-p">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non, volutpat nunc, amet laoreet odio dolor nec.
+                            Penatibus nisi amet dolor mattis</p>
+                        <h4 class="read_more">Read more
+                            <span class="div">
+                                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em"
+                                    width="1em" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill="none" d="M0 0h24v24H0z"></path>
+                                    <path d="M15 5l-1.41 1.41L18.17 11H2v2h16.17l-4.59 4.59L15 19l7-7-7-7z"></path>
+                                </svg>
+                            </span>
+                        </h4>
+                    </div>
+                    
+                </div>
             </div>
         </div>
     </div>
 </template>
 
-
-<script>
-export default {
-    name: 'Blog',
-    setup() {
-
-
-        return {}
-    }
-
-
-}
+<script setup>
+import NavBar from '@/components/NavBar.vue'
 </script>
-
 
 <style scoped>
 .h1 {
@@ -185,5 +177,12 @@ export default {
     .read_more{
         margin: 0;
     }
+}
+
+/* Force NavBar text to black on blog page */
+.blog-page .navbar a,
+.blog-page .navbar .nav-cart a,
+.blog-page .navbar .nav-links a {
+  color: #111 !important;
 }
 </style>
