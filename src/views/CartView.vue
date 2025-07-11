@@ -1,87 +1,68 @@
 <script setup>
-import{computed, ref} from 'vue'
+import { computed, ref } from 'vue'
 import NavBar from '@/components/NavBar.vue'
-import { totalCartItems, popularProdData, productsData, topPicksData } from '@/pageData.js'
-import { useRouter, useRoute } from 'vue-router';
+import BaseButton from '@/components/BaseButton.vue'
+import LoadingSkeleton from '@/components/LoadingSkeleton.vue'
+import { useCartStore, useProductsStore } from '@/stores'
+import { useRouter, useRoute } from 'vue-router'
 
 
 
-// The code to sort all the items in the cart to one each and also ther total number of occurence
-const cartArray =ref([]);
-const cartItemsOccurence ={};
+const cartStore = useCartStore()
+const productsStore = useProductsStore()
 
-totalCartItems.value.forEach(item =>{
-    if (!cartItemsOccurence[item]){
-        cartItemsOccurence[item] = 1
-    } else {
-        cartItemsOccurence[item]++
-    }
-})
+const isLoading = ref(false)
 
-Object.keys(cartItemsOccurence).forEach(item =>{
-    cartArray.value.push({item: item, count: cartItemsOccurence[item]})
-})
+const cartArray = computed(() => {
+    return cartStore.groupedItems
+});
 
-//the code to get the data from the data file 
-
-for(let i= 0; i < productsData.value.length; i++ ){
-    for(let j = 0; j < cartArray.value.length; j++){
-        if(cartArray.value[j].item == productsData.value[i].value){
-            cartArray.value[j] = { ...cartArray.value[j], ...productsData.value[i] }
-        }
-    }
-}  
-for(let i= 0; i < topPicksData.value.length; i++ ){  
-    for(let j = 0; j < cartArray.value.length; j++){
-        if(cartArray.value[j].item == topPicksData.value[i].value){
-            cartArray.value[j] = { ...cartArray.value[j], ...topPicksData.value[i] }
-        }
-    }
-}
-for(let i= 0; i < popularProdData.value.length; i++ ){
-    for(let j = 0; j < cartArray.value.length; j++){
-        if(cartArray.value[j].item == popularProdData.value[i].value){
-            cartArray.value[j] = { ...cartArray.value[j], ...popularProdData.value[i] }
-        }
-    }
-}
-
-// const totalSum = ref(0 )
+const cartWithProductData = computed(() => {
+    return cartArray.value.map(cartItem => {
+        const productData = productsStore.getProductByValue(cartItem.item);
+        return productData ? { ...cartItem, ...productData } : cartItem;
+    });
+});
 
 
 const totalPrice = computed(() => {
-    if(cartArray.value){
-        return cartArray.value.reduce((acc, item) => {
-            return acc + item.price * item.count;
-    }, 0); 
-    }
-  removeItem
+    return cartStore.getCartTotalWithProducts(productsStore)
 });
+
 const totalItems = computed(() => {
-    if(cartArray.value){
-        return cartArray.value.reduce((acc, item) => {
-            return acc + item.count;
-    }, 0); 
-    }
-  
+    return cartStore.cartCount
 });
-console.log(cartArray.value[1])
+
 
 const props = defineProps(['value'])
 
 
-// To redirect the checkout to not found page
 const router = useRouter();
 const route = useRoute();
 
-const navigateToNotFound = () => {
-    router.push('/none')
+const navigateToCheckout = () => {
+    if (cartArray.value.length === 0) {
+        alert('Your cart is empty. Please add some products before checkout.');
+        return;
+    }
+    router.push('/checkout');
+}
+
+const clearAllItems = () => {
+    if (confirm('Are you sure you want to clear your cart?')) {
+        cartStore.clearCart();
+    }
 }
 
 const removeItem = (index) => {
-//   cartArray.value[index].count = 0;
-  // Alternatively, you can completely remove the item from the cartArray if you don't want to display it at all.
-  cartArray.value.splice(index, 1);
+  const itemToRemove = cartWithProductData.value[index];
+  if (itemToRemove) {
+    cartStore.removeAllInstances(itemToRemove.item);
+  }
+};
+
+const updateQuantity = (itemValue, newQuantity) => {
+  cartStore.updateQuantity(itemValue, newQuantity);
 };
 
 </script>
@@ -93,31 +74,56 @@ const removeItem = (index) => {
             <NavBar />
         </div>
         <div class="content">
-            <div class="item-true" v-if="cartArray.length">
-                <div class="cart-body" v-for="(item, index) in cartArray" :key="item.index" >
-                    <hr>
-                    <div class="item-data">
-                        <div class="left">
-                            <router-link :to="{name: 'ItemDetails', params:{value: item.value}}">
-                                <div class="image">
-                                    <img :src="item.img" />
-                                </div>
+            <div v-if="isLoading" class="loading-state">
+                <LoadingSkeleton type="cart-item" :count="3" />
+            </div>
+            
+            <div v-else-if="cartWithProductData.length" class="cart-items">
+                <div class="cart-item" v-for="(item, index) in cartWithProductData" :key="item.item">
+                    <div class="cart-item-content">
+                        <div class="cart-item-left">
+                            <router-link :to="{name: 'ItemDetails', params:{value: item.value}}" class="cart-item-image">
+                                <img :src="item.img" :alt="item.name" />
                             </router-link>
-                            <div class="item-details">
-                                <h3>{{ item.name }}</h3>
-                                <div class="other-item-details">
-                                    <h4>Clearamane</h4>
-                                    <p>Size:<span class="item-size">   200 ml/3.3 fl oz</span></p>
-                                    <p>Unit Price: ${{item.price}}</p>
+                            <div class="cart-item-details">
+                                <h3 class="cart-item-title">{{ item.name }}</h3>
+                                <div class="cart-item-info">
+                                    <p class="cart-item-brand">Clearamane</p>
+                                    <p class="cart-item-size">Size: <span>200 ml/3.3 fl oz</span></p>
+                                    <p class="cart-item-price">Unit Price: ${{item.price}}</p>
                                 </div>
-                                <h3 class="item-quantity">QTY: {{ item.count }} </h3>
+                                <div class="quantity-controls">
+                                    <BaseButton 
+                                        variant="outline" 
+                                        size="small"
+                                        :disabled="item.count <= 1"
+                                        @click="updateQuantity(item.item, item.count - 1)"
+                                        class="qty-btn"
+                                    >
+                                        -
+                                    </BaseButton>
+                                    <span class="item-quantity">{{ item.count }}</span>
+                                    <BaseButton 
+                                        variant="outline" 
+                                        size="small"
+                                        @click="updateQuantity(item.item, item.count + 1)"
+                                        class="qty-btn"
+                                    >
+                                        +
+                                    </BaseButton>
+                                </div>
                             </div>
                         </div>
-                        <div class="right">
-                            <div class="p">
-                                <p @click="removeItem(index)">x</p>
-                            </div>
-                            <h3>
+                        <div class="cart-item-right">
+                            <BaseButton 
+                                variant="ghost" 
+                                size="small"
+                                @click="removeItem(index)"
+                                class="remove-btn"
+                            >
+                                ×
+                            </BaseButton>
+                            <h3 class="cart-item-total">
                                 ${{ (item.price * item.count).toFixed(2) }}
                             </h3>
                         </div>
@@ -125,334 +131,337 @@ const removeItem = (index) => {
                 </div>
             </div>
            
-            <div class="item-false" v-else>
-                <h1>No items available in cart...</h1>
-            </div>
-            <hr class="bottom-hr">
-            <div class="other-section">
-                <div class="continue-shopping">
-                    <router-link to="/products">Continue Shopping -></router-link>
+            <div v-else class="empty-cart">
+                <div class="empty-cart-content">
+                    <h1>Your cart is empty</h1>
+                    <p>Add some products to get started!</p>
+                    <BaseButton 
+                        variant="primary" 
+                        size="large"
+                        @click="$router.push('/products')"
+                    >
+                        Start Shopping
+                    </BaseButton>
                 </div>
-                <div class="total-final">
-                    <h4>Products in cart: <span class="value"> {{ totalItems }} items</span></h4>
-                    <h4>Total:  <span class="value">${{ totalPrice?.toFixed(2) }}</span> </h4>
-                    <button class="checkout-button" @click="navigateToNotFound">Proceed to checkout </button>
+            </div>
+            
+            <div v-if="cartWithProductData.length" class="cart-summary">
+                <div class="cart-actions">
+                    <BaseButton 
+                        variant="ghost" 
+                        @click="$router.push('/products')"
+                    >
+                        ← Continue Shopping
+                    </BaseButton>
+                    <BaseButton 
+                        variant="danger" 
+                        @click="clearAllItems"
+                    >
+                        Clear Cart
+                    </BaseButton>
+                </div>
+                <div class="cart-totals">
+                    <div class="total-row">
+                        <span>Products in cart:</span>
+                        <span class="total-value">{{ totalItems }} items</span>
+                    </div>
+                    <div class="total-row">
+                        <span>Total:</span>
+                        <span class="total-value">${{ totalPrice?.toFixed(2) }}</span>
+                    </div>
+                    <BaseButton 
+                        variant="primary" 
+                        size="large"
+                        fullWidth
+                        @click="navigateToCheckout"
+                        class="checkout-btn"
+                    >
+                        Proceed to Checkout
+                    </BaseButton>
                 </div>
             </div>
         </div>
     </div>
-  </template>
+</template>
   
 
 <style scoped>
-.container{
+.container {
     display: flex;
     align-items: start;
     flex-direction: column;
     min-height: 100vh;
     max-width: 100%;
-    margin:0 80px;
+    margin: 0 80px;
     color: #000;
     background: #F1F5F2;
     font-family: Rubik;
 }
-.content{
-    width:100% ;
-    margin-top: 40px;
 
+.content {
+    width: 100%;
+    margin-top: 40px;
 }
-.item-false h1{
-    font-style: italic;
-    font-size: 30px;
-    margin:0 0 40px ;
-}
-.navigationBar{
+
+.navigationBar {
     margin-right: 80px;
     color: #000;
     width: 100%;
 }
 
-
-hr{
-    margin: 0;
+/* Loading State */
+.loading-state {
     width: 100%;
 }
 
-.image{
-    padding: 0;
-    height: 150px;
-    margin-right: 20px;
-}
-.image img{
-    width: 150px;
-    height: 150px;
-    border-radius: 20px;
-}
-.item-data{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin: 25px 0;
-
-}
-.left{
-    display: flex;
-    width: 500px;
-}
-.item-details{
-    text-align: left;
+/* Cart Items */
+.cart-items {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    height: 150px;
+    gap: 20px;
 }
-.item-details h3{
-    margin: 0 0 10px 0;
-    line-height: 1;
-    font-weight: 500;
-    font-size: 22px;
 
+.cart-item {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
-.item-details h4{
-    font-size: 18px;
-    font-weight: 400;
-    color: #888;
-    transform: scaleY(1.15);
-    margin: auto 0;
+
+.cart-item-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
 }
-.item-details p{
-    font-size: 18px;
-    font-weight: 400;
-    color: #888;
-    margin: auto 0;
+
+.cart-item-left {
+    display: flex;
+    gap: 20px;
+    flex: 1;
 }
-.item-size{
-    color: #000;
+
+.cart-item-image {
+    flex-shrink: 0;
+    width: 120px;
+    height: 120px;
+    border-radius: 8px;
+    overflow: hidden;
 }
-h3.item-quantity{
-    margin: 10px 0 0 0;
+
+.cart-item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.cart-item-details {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 1;
+}
+
+.cart-item-title {
+    margin: 0;
     font-size: 20px;
-    transform: scaleY(1.2);
+    font-weight: 600;
+    color: #333;
 }
-.right{
+
+.cart-item-info {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    gap: 4px;
 }
-.right .p{
+
+.cart-item-brand,
+.cart-item-size,
+.cart-item-price {
     margin: 0;
-    border: solid 1px black;
-    border-radius: 100%;
-    width: 30px;
-    height: 30px;
+    font-size: 14px;
+    color: #666;
+}
+
+.cart-item-size span {
+    color: #333;
+    font-weight: 500;
+}
+
+.quantity-controls {
     display: flex;
-    justify-content: center;
     align-items: center;
-    align-self: center;
+    gap: 12px;
 }
-.right .p p{
-    margin: 0;
+
+.qty-btn {
+    width: 32px !important;
+    height: 32px !important;
+    padding: 0 !important;
+    min-height: 32px !important;
 }
-.right h3{
-    font-size: 29px;
-    transform: scaleY(1.3);
-    font-weight: 300;
-    margin: 0;
+
+.item-quantity {
+    font-size: 16px;
+    font-weight: 600;
+    min-width: 40px;
+    text-align: center;
+    color: #333;
 }
-.other-section{
-    width: 100%;
+
+.cart-item-right {
     display: flex;
-    justify-content: space-between;
-    margin: 60px 0 ;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 12px;
 }
-.continue-shopping{
-    margin: 0;
+
+.remove-btn {
+    width: 32px !important;
+    height: 32px !important;
+    padding: 0 !important;
+    min-height: 32px !important;
+    font-size: 18px;
+    font-weight: bold;
 }
-.continue-shopping a{
+
+.cart-item-total {
     font-size: 24px;
-    font-weight: 400;
+    font-weight: 600;
     color: #2F4333;
     margin: 0;
 }
-.total-final{
-    width: 350px;
-    
+
+/* Empty Cart */
+.empty-cart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+    text-align: center;
 }
-.total-final h4{
-    color: #888;
+
+.empty-cart-content h1 {
+    font-size: 32px;
+    margin-bottom: 16px;
+    color: #333;
+}
+
+.empty-cart-content p {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 32px;
+}
+
+/* Cart Summary */
+.cart-summary {
+    margin-top: 40px;
+    padding: 24px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cart-actions {
     display: flex;
     justify-content: space-between;
-    font-size: 22px;
-    transform: scaleY(1.3);
-    font-weight: 400;
-    margin: 0;
-}
-.total-final .value{
-    color: #000000;
-    margin-left: 50px;
-  
-
-}
-.checkout-button{
-    width: 100%;
-    padding: 30px;
-    font-size: 23px;
-    margin-top: 30px;
+    align-items: center;
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
 }
 
-@media(max-width:800px){
-    .container{
+.cart-totals {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    color: #666;
+}
+
+.total-value {
+    font-weight: 600;
+    color: #333;
+}
+
+.checkout-btn {
+    margin-top: 8px;
+}
+
+/* Responsive Styles */
+@media (max-width: 800px) {
+    .container {
         margin: 0 20px;
     }
-    .content{
-        margin-top: 40px;
-    }
-    .item-false h1{
-        font-size: 1.5rem;
-        margin:-10px 0 40px ;
-    }
-
-    .left{
-        height: 100px;
-    }
-    .image{
-        height: 100px;
-    }
-    .image img{
-        width: 100px;
-        height: 100px;
-    }
-    .item-data{
-        align-items: center;
-        height: 100px;
-    }
-    .item-details {
-        height: 100px;
-    }
-    .item-details h3 {
-        font-size: 1rem;
-        margin: 0 0 5px 0;
-    }
-    .item-details h4 {
-        font-size: 1rem;
-    }
-    .item-details p {
-        font-size: 1rem;
-    }
-    .right{
-        justify-content: space-between;
-        height: 100px;
-    }
-    .right h3{
-        font-size: 1rem;
-    }
-    .right .p{
-        width: 20px;
-        height: 20px;
-    }
-    .right .p p{
-        font-size: 0.8rem;
-    }
-    .continue-shopping a{
-        font-size: 1.2rem;
-    }
-    .total-final{
-        width: 250px;
-    }
-    .total-final h4{
-        font-size: 1rem;
-    }
-    .checkout-button{
-        margin-top: 20px;
-        padding: 20px;
-        font-size: 1rem;
-    }
-}
-@media (max-width: 550px){
-    .continue-shopping a{
-        font-size: 1rem;
-    }
-    .total-final{
-        width: 200px;
-    }
-    .total-final h4{
-        font-size: 0.8rem;
-    }
-    .checkout-button{
-        margin-top: 20px;
-        padding: 20px;
-        font-size: 0.8rem;
-    }
-}
-
-@media (max-width: 450px){
-    .item-false h1{
-        font-size: 1.2rem;
-        margin:-10px 0 40px ;
-    }
-    .image{
-        margin-right: 10px;
-    }
-    .item-details h3 {
-        font-size: 0.7rem;
-    }
-    .item-details h4 {
-        font-size: 0.7rem;
-    }
-    .item-details p {
-        font-size: 0.55rem;
-    }
-    .other-item-details{
-        height: 50px;
-        display: flex;
+    
+    .cart-item-content {
         flex-direction: column;
+        gap: 16px;
+    }
+    
+    .cart-item-left {
+        width: 100%;
+    }
+    
+    .cart-item-right {
+        align-items: flex-start;
+        flex-direction: row;
         justify-content: space-between;
+        width: 100%;
     }
-    .right p{
-        font-size: 0.7rem;
+    
+    .cart-actions {
+        flex-direction: column;
+        gap: 16px;
+        align-items: stretch;
     }
-    .continue-shopping a{
-        font-size: 0.9rem;
+    
+    .empty-cart-content h1 {
+        font-size: 24px;
     }
-    .total-final{
-        width: 150px;
-    }
-    .total-final h4{
-        font-size: 0.7rem;
-    }
-    .total-final .value{
-        margin-left: 20px;
-    }
-    .checkout-button{
-        margin-top: 10px;
-        padding: 15px;
-        font-size: 0.7rem;
+    
+    .empty-cart-content p {
+        font-size: 16px;
     }
 }
-@media (max-width: 350px){
-    .item-false h1{
-        font-size: 1rem;
-        margin:-10px 0 40px ;
+
+@media (max-width: 600px) {
+    .cart-item-image {
+        width: 80px;
+        height: 80px;
     }
-    .right p{
-        font-size: 0.6rem;
+    
+    .cart-item-title {
+        font-size: 16px;
     }
-    .right h3{
-        font-size: 0.8rem;
+    
+    .cart-item-brand,
+    .cart-item-size,
+    .cart-item-price {
+        font-size: 12px;
     }
-    .continue-shopping a{
-        font-size: 0.7rem;
+    
+    .cart-item-total {
+        font-size: 20px;
     }
-    .total-final{
-        width: 150px;
+    
+    .total-row {
+        font-size: 16px;
     }
-    .total-final h4{
-        font-size: 0.6rem;
+    
+    .empty-cart-content h1 {
+        font-size: 20px;
     }
-    .checkout-button{
-        margin-top: 10px;
-        padding: 15px 10px;
-        font-size: 0.6rem;
+    
+    .empty-cart-content p {
+        font-size: 14px;
     }
 }
+
 </style>

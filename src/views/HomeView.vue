@@ -4,7 +4,7 @@
             <div class="navigationBar">
                 <NavBar />
             </div>
-            <div class="homeHeaderMid" @click="log">
+            <div class="homeHeaderMid">
                 <h3>{{ pageName }} :<br> Skin for days</h3>
                 <p>Skin care us a science, {{ pageName }} makes it art. Reduce finelines and wrinkles with alpha hydroxy
                     acid skin care products. Say HI to a new found glow routine.</p>
@@ -57,9 +57,6 @@ const navigateToProductView = () => {
 // Inject the state and method from the parent component
 const isMenuOpen = inject('isMenuOpen');
 const toggleMenu = inject('toggleMenu');
-const log =()=>{
-    console.log(isMenuOpen.value)
-}
 
 </script>
 

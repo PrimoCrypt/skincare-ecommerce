@@ -2,7 +2,7 @@
     <div>
         <h1 class="h1">Popular Products</h1>
         <div class="p_productItems">
-            <div class="item"  v-for="item in popularProdData" :key="item.value">
+            <div class="item"  v-for="item in productsStore.popularProducts" :key="item.value">
                 <router-link :to="{name: 'ItemDetails', params:{value: item.value, image: item.img, name: item.name, price: item.price}}">
                     <img :src="item.img" />
                     
@@ -17,11 +17,13 @@
 </template>
 
 <script setup>
-import { popularProdData } from '../../pageData.js'
+import { useProductsStore } from '@/stores'
 import { onMounted } from 'vue'
 
 
-    // const { popularProdData } = pageData
+    // Use stores
+    const productsStore = useProductsStore()
+
     async function fetchData() {
     // Code to fetch data from another component or API
     // Since you're using a separate file, you may skip the fetching logic here

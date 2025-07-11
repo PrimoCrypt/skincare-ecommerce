@@ -2,7 +2,7 @@
     <div>
         <h1 class="h1">Top Picks</h1>
         <div class="topPicksItems" >
-            <div class="item" v-for="item in topPicksData" :key="item.value">
+            <div class="item" v-for="item in productsStore.topPicks" :key="item.value">
                 <router-link :to="{name: 'ItemDetails', params:{value: item.value}}">
                     <img :src="item.img" />
                     
@@ -27,11 +27,15 @@
 </template>
 
 <script setup>
-import { topPicksData, updateCartItemsCount  } from '@/pageData.js'
+import { useProductsStore, useCartStore } from '@/stores'
 import { onMounted } from 'vue'
 
+// Use stores
+const productsStore = useProductsStore()
+const cartStore = useCartStore()
+
 const addToCart = (value) => {
-    updateCartItemsCount(value) 
+    cartStore.addItem(value) 
 };
 
 async function fetchData() {

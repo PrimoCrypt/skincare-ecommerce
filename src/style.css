@@ -62,6 +62,21 @@ button:focus-visible {
   text-align: center;
 }
 
+/* Override dark mode for inputs */
+input, textarea, select {
+  background-color: white !important;
+  color: #333 !important;
+}
+
+input::placeholder, textarea::placeholder {
+  color: #999 !important;
+}
+
+input:focus, textarea:focus, select:focus {
+  background-color: white !important;
+  color: #333 !important;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

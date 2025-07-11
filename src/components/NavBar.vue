@@ -11,7 +11,7 @@
             </div>
             <span class="nav-cart">
                 <router-link to="/cart">
-                    <font-awesome-icon :icon="['fas', 'shopping-cart']" size="lg" /><span class="cart-quantity">{{ totalCartItems.length }}</span>
+                    <font-awesome-icon class="cart-icon" :icon="['fas', 'shopping-cart']" size="lg" /><span class="cart-quantity">{{ cartStore.cartCount }}</span>
                 </router-link>
             </span>
         </div>
@@ -21,7 +21,7 @@
             <div class="leftside">
                 <span class="nav-cart">
                     <router-link to="/cart">
-                        <font-awesome-icon :icon="['fas', 'shopping-cart']" size="lg" /><span class="cart-quantity">{{ totalCartItems.length }}</span>
+                        <font-awesome-icon class="cart-icon" :icon="['fas', 'shopping-cart']" size="lg" /><span class="cart-quantity">{{ cartStore.cartCount }}</span>
                     </router-link>
                 </span>
                 <div class="whole-harmburger-menu">
@@ -44,12 +44,15 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted,inject } from 'vue'
-import { pageNameHeader, totalCartItems } from '@/pageData.js';
+import { ref, onMounted, onUnmounted, inject } from 'vue'
+import { pageNameHeader } from '@/pageData.js'
+import { useCartStore } from '@/stores/cart'
 
     const toggleMenu = inject('toggleMenu');
     const isMenuOpen = inject('isMenuOpen')
 
+    // Use cart store
+    const cartStore = useCartStore()
 
     const isSmallScreen = ref(window.innerWidth < 700);
 

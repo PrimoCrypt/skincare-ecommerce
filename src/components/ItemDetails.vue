@@ -56,7 +56,7 @@
                         <h2>QTY: {{ cartItemValue.length }}</h2>
                     </div>
                 </div>
-                <div class="addToCart" @click="addToCart(item.value),displayConsole()" >
+                <div class="addToCart" @click="addToCart(item.value)" >
                     <button>ADD TO CART</button>
                 </div>
             </div>
@@ -69,66 +69,33 @@
 </template>
 
 <script setup>
-import {ref, watch, onMounted, onUnmounted, nextTick} from 'vue'
+import {ref, computed, watch, onMounted, onUnmounted, nextTick} from 'vue'
 import NavBar from '@/components/NavBar.vue'
 import Footer from '@/components/Footer.vue'
-import { productsData , topPicksData , popularProdData, totalCartItems, updateCartItemsCount } from '@/pageData.js';
+import { useProductsStore, useCartStore } from '@/stores'
+
+// Use stores
+const productsStore = useProductsStore()
+const cartStore = useCartStore()
 
 const addToCart = (value) => {
-    updateCartItemsCount(value) 
+    cartStore.addItem(value) 
 };
 
-const item = ref(null)
-
-for(let i= 0; i < productsData.value.length; i++ ){
-    if(props.value == productsData.value[i].value){
-        item.value = productsData.value[i]
-    }
-}  
-for(let i= 0; i < topPicksData.value.length; i++ ){  
-    if(props.value == topPicksData.value[i].value){
-        item.value = topPicksData.value[i]
-    }
-}
-for(let i= 0; i < popularProdData.value.length; i++ ){
-    if(props.value == popularProdData.value[i].value){
-        item.value = popularProdData.value[i]
-    }
-}
+const item = computed(() => {
+    return productsStore.getProductByValue(props.value)
+})
 
 
 
 // To watch the items added to cart and update the cart value
-const cartItemValue = ref(null)
-
-const filterItemValue = (totalCartItems, certainValue)=>{
-    return totalCartItems.filter(item => item === certainValue )
-};
-cartItemValue.value = filterItemValue(totalCartItems.value, item.value.value);
-
-onMounted(() => {
-    const filterItemValue = (totalCartItems, certainValue)=>{
-    return totalCartItems.filter(item => item === certainValue )
-};
-  // Initialize cartItemValue with the filtered value when the page loads
-  cartItemValue.value = filterItemValue(totalCartItems.value, item.value.value);
-})
-
-watch([totalCartItems.value], ([newTotalCartItems]) => {
-  cartItemValue.value = filterItemValue(newTotalCartItems, item.value.value);
+const cartItemValue = computed(() => {
+    return cartStore.cartItems.filter(item => item === props.value)
 })
 
 
 
-const displayConsole = ()=>{
-    console.log('The console is working')
-//     console.log(cartItemValue.value)
-//     console.log(item.value)
-//     console.log(totalCartItems.value)
-//     nextTick(() => {
-//     console.log('After DOM update:', cartItemValue.value);
-// });
-};
+
 
 
 // TO handke responsiveness when the screen size changes

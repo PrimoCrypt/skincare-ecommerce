@@ -1,4 +1,5 @@
 import { createApp } from 'vue'
+import { createPinia } from 'pinia'
 import { createWebHistory } from 'vue-router'
 import createRouter from '@/router/index.js'
 import './style.css'
@@ -16,6 +17,8 @@ router.beforeEach(()=>{
 });
 
 const app = createApp(App)
+const pinia = createPinia()
 
 app.component('font-awesome-icon', FontAwesomeIcon)
+app.use(pinia)
 app.use(router).mount('#app')
