@@ -263,6 +263,7 @@ const processCheckout = async () => {
 .checkout-page {
     min-height: 100vh;
     background: #F1F5F2;
+    color: #000;
 }
 
 .navigationBar {
